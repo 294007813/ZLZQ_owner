@@ -16,7 +16,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store",], functi
         },
         onShow: function () {
 
-            console.log(this.$el.find(".iconBrush"))
+            //console.log(this.$el.find(".iconBrush"))
         }
 
 
