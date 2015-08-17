@@ -10,6 +10,11 @@
 	<script type="text/javascript" src="./js/zlzq.js"></script>
 </head>
 <body>
+
+
+
+
+
 	<div class="nav">
 		<h1>租来租去</h1>
 	</div>
@@ -36,10 +41,11 @@
 				<i class="icon iconHouse"></i>
 				<span>上传房源</span>
 			</a>
-			<a href="">
+			<a href="" class="iconBrush">
 				<i class="icon iconBrush"></i>
-				<span>装修</span>
+				<span >装修</span>
 			</a>
+			<!--<div class="iconBrush" style="height: 100px;width: 100px;background: yellow">11111</div>-->
 		</div>
 	</div>
 	<ul class="tab">
@@ -56,5 +62,23 @@
 			<span>我的</span>
 		</li>
 	</ul>
+
+
+<script type="text/lizard-config">
+     {
+     "url_schema": "newindex",
+     "viewName":"newindex",
+     "view":{
+        "viewport": Lizard.T("viewportTmpl")
+     },
+     "controller": "resource/zlzq/js/controllers/newindex.js"
+      }
+</script>
+<script id="viewportTmpl" type="text/lizard-template">
+
+</script>
 </body>
+
+
+<script type="text/javascript" src="resource/hih5/js/lib/hih5.core.js" pdconfig="resource/zlzq/js/zlzqconfig.js" lizardconfig="isHideAllLoading:true"></script>
 </html>
