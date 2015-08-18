@@ -12,7 +12,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","UIGroupS
             "click .opt-list .score":"toMyScore",
             "click .opt-list .favorites":"toFavorite",
             "click .opt-list .order":"toOrderList",
-            "click .bottom-bar .rent":"toRent",
+            "click .bottom-bar .rent":"toLocation",
             "click .bottom-bar .mine":"toMine",
             "click .bottom-bar .order":"toOrderList",
             //"click .bottom-bar .schedule":"toSchedule"

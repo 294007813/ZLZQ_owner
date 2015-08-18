@@ -58,7 +58,7 @@ body{overflow-x:hidden;overflow-y:auto;}
 	overflow: hidden;
 	z-index: 1;
 }
-.tab{
+.tab1{
 	position: fixed;
 	left: 0;
 	bottom: 0;
@@ -70,48 +70,48 @@ body{overflow-x:hidden;overflow-y:auto;}
 	border-top: 1px solid #E7E7E7;
 	z-index: 3;
 }
-.tab li{
+.tab1 li{
 	display: inline-block;
 	width: 85px;
 	height: 50px;
 	text-align: center;
 	cursor: pointer;
 }
-.tab li:first-child{
+.tab1 li:first-child{
 	float: left;
 }
-.tab li:last-child{
+.tab1 li:last-child{
 	float: right;
 }
-.tab .icon{
+.tab1 .icon{
 	height: 35px;
 	width: 35px;
 }
-.tab .icon-home{
+.tab1 .icon-home{
 	background: url(../img/home.png) no-repeat center;
 	background-size: 25px 25px;
 }
-.tab .icon-note{
+.tab1 .icon-note{
 	background: url(../img/note.png) no-repeat center;
 	background-size: 25px 25px;
 }
-.tab .icon-person{
+.tab1 .icon-person{
 	background: url(../img/person.png) no-repeat center;
 	background-size: 25px 25px;
 }
-.tab .on .icon-home{
+.tab1 .on .icon-home{
 	background: url(../img/homeon.png) no-repeat center;
 	background-size: 25px 25px;
 }
-.tab .on .icon-note{
+.tab1 .on .icon-note{
 	background: url(../img/noteon.png) no-repeat center;
 	background-size: 25px 25px;
 }
-.tab .on .icon-person{
+.tab1 .on .icon-person{
 	background: url(../img/personon.png) no-repeat center;
 	background-size: 25px 25px;
 }
-.tab li span{
+.tab1 li span{
 	display: block;
 	color: #737478;
 	font-size: 12px;
@@ -120,7 +120,7 @@ body{overflow-x:hidden;overflow-y:auto;}
 	overflow: hidden;
 	text-overflow:ellipsis;
 }
-.tab li.on span{
+.tab1 li.on span{
 	color: #FF6C10;
 }
 .icon{
