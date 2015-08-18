@@ -6,10 +6,21 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 	<link rel="stylesheet" type="text/css" href="./resource/zlzq/css/zlzq_owner.css" />
-	<script type="text/javascript" src="./js/jq.js"></script>
-	<script type="text/javascript" src="./js/zlzq.js"></script>
+	<!--<script type="text/javascript" src="./js/jq.js"></script>-->
+	<!--<script type="text/javascript" src="./js/zlzq.js"></script>-->
 </head>
 <body>
+<!--<script type="text/lizard-config">-->
+     <!--{-->
+     <!--"url_schema": "houses-info",-->
+     <!--"viewName":"houses-info",-->
+     <!--"view":{-->
+        <!--"viewport": Lizard.T("viewportTmpl")-->
+     <!--},-->
+     <!--"controller": "resource/zlzq/js/controllers/houses-info.js"-->
+      <!--}-->
+<!--</script>-->
+<!--<script id="viewportTmpl" type="text/lizard-template">-->
 	<div class="nav">
 		<a class="back" href="#"></a>
 		<h1>房源详情</h1>
@@ -24,7 +35,7 @@
 				</li>
 				<li>
 					<label for="address">详细地址</label>
-					<div class="input-cotent" id="address">秀沿路404号A栋</li>
+					<div class="input-cotent" id="address">秀沿路404号A栋</div>
 				</li>
 				<li>
 					<label for="rent">租金</label>
@@ -36,31 +47,31 @@
 				</li>
 				<li>
 					<label for="layer">楼层</label>
-					<div class="input-cotent" id="layer" />3/10&nbsp;F</div>
+					<div class="input-cotent" id="layer" >3/10&nbsp;F</div>
 				</li>
 			</ul>
 			<ul class="form-list">
 				<li class="form-select" id="housetype-select">
 					<label>户型</label>
-					<div class="input-cotent" id="housetype" />一室一厅</div>
+					<div class="input-cotent" id="housetype" >一室一厅</div>
 				</li>
 				<li class="form-select" id="housing-select">
 					<label>装修</label>
-					<div class="input-cotent" id="housing" />简装</div>
+					<div class="input-cotent" id="housing" >简装</div>
 				</li>
 				<li class="form-select" id="faceto-select">
 					<label>朝向</label>
-					<div class="input-cotent" id="faceto" />东南</div>
+					<div class="input-cotent" id="faceto" >东南</div>
 				</li>
 				<li class="form-select" id="housingtime-select">
 					<label>装修年限</label>
-					<div class="input-cotent"  id="housingtime" />5年</div>
+					<div class="input-cotent"  id="housingtime" >5年</div>
 				</li>
 			</ul>
 			<ul class="form-list">
 				<li class="form-select" id="rentdeadline-select">
 					<label>租赁到期</label>
-					<div class="input-cotent"  id="rentdeadline" />2015/10/10至2016/12/12</div>
+					<div class="input-cotent"  id="rentdeadline" >2015/10/10至2016/12/12</div>
 				</li>
 			</ul>
 			<dl class="form-dl">
@@ -238,5 +249,8 @@
 			<span>我的</span>
 		</li>
 	</ul>
+<!--</script>-->
 </body>
+
+<script type="text/javascript" src="resource/hih5/js/lib/hih5.core.js" pdconfig="resource/zlzq/js/zlzqconfig.js" lizardconfig="isHideAllLoading:true"></script>
 </html>

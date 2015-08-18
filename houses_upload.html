@@ -10,6 +10,44 @@
 	<script type="text/javascript" src="./js/zlzq.js"></script>
 </head>
 <body>
+
+<div id="main">
+	<div class="main-frame">
+		<div class="main-viewport">
+		</div>
+		<div class="main-state"></div>
+	</div>
+</div>
+
+
+<ul class="tab">
+	<li class="on">
+		<i class="icon icon-home"></i>
+		<span>首页</span>
+	</li>
+	<li>
+		<i class="icon icon-note"></i>
+		<span>约看日程</span>
+	</li>
+	<li>
+		<i class="icon icon-person"></i>
+		<span>我的</span>
+	</li>
+</ul>
+
+
+<script type="text/lizard-config">
+     {
+     "url_schema": "newindex",
+     "viewName":"newindex",
+     "view":{
+        "viewport": Lizard.T("viewportTmpl")
+     },
+     "controller": "resource/zlzq/js/controllers/newindex.js"
+      }
+</script>
+<script id="viewportTmpl" type="text/lizard-template">
+
 	<div class="nav">
 		<a class="back" href="#"></a>
 		<h1>上传房源</h1>
@@ -278,19 +316,9 @@
 			</div>
 		</form>
 	</div>
-	<ul class="tab">
-		<li>
-			<i class="icon icon-home"></i>
-			<span>首页</span>
-		</li>
-		<li>
-			<i class="icon icon-note"></i>
-			<span>约看日程</span>
-		</li>
-		<li>
-			<i class="icon icon-person"></i>
-			<span>我的</span>
-		</li>
-	</ul>
+
+</script>
 </body>
+
+<script type="text/javascript" src="resource/hih5/js/lib/hih5.core.js" pdconfig="resource/zlzq/js/zlzqconfig.js" lizardconfig="isHideAllLoading:true"></script>
 </html>

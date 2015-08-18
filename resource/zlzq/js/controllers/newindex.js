@@ -3,10 +3,16 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store",], functi
     var View = BaseView.extend({
         ViewName: 'newindex',
         events: {
-            "click .iconBrush":"toDecorate"
+            "click .iconBrush":"toDecorate",
+            "click .iconHouse":"toHouseUpload",
+            "click .icon-person":"toPersonal"
         },
 
-        //点击装修
+        toHouseUpload:function(){
+            Lizard.goTo("houses_upload.html");
+        },
+
+
         toDecorate:function(){
             Lizard.goTo("decoratelist.html");
         },
@@ -15,8 +21,8 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store",], functi
 
         },
         onShow: function () {
-
-            //console.log(this.$el.find(".iconBrush"))
+            console.log(this.$el.find(".iconHouse"));
+            console.log(this.$el.find(".iconBrush"))
         }
 
 
