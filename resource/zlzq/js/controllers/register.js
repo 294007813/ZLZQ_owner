@@ -11,7 +11,7 @@ define(['BaseView', "cUIInputClear", "Model", "Store", "text!TplRegister"], func
                 "click .mine" :"toUserCenter",
                 "click .rent":"toRent",
                 "click .login_btn":"toLogin",
-                "click .bottom-bar .rent":"toRent",
+                "click .icon-home":"toRent",
                 "click .bottom-bar .mine":"toPersonal",
                 "click .bottom-bar .order":"toOrder",
                 //"click .bottom-bar .schedule":"toSchedule",
@@ -163,12 +163,15 @@ define(['BaseView', "cUIInputClear", "Model", "Store", "text!TplRegister"], func
             setHeader: function (type) {
                 self.header.set({
                     title: '注册',
-                    back: !0,
-                    backtext: '<i class="top_more left"></i> ',
+                    back: true,
+                    backtext: '<i class="icon-back"></i> ',
                     view: this,
                     events: {
                         returnHandler: function () {
-                            self.toggleSideBar();
+                            //self.toggleSideBar();
+                            //window.location.href="newindex.html";
+                            Lizard.goTo("login.html");
+
                         },
                         commitHandler: function () {
 

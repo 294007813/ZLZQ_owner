@@ -5,14 +5,14 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store",], functi
         events: {
             "click .iconBrush":"toDecorate",
             "click .iconHouse":"toHouseUpload",
-            "click .person":"toPersonal",
-            //"click .indexButton":"toMyhouse",
+            "click .icon-person":"toPersonal",
+            "click .iconPad":"toMyhouse",
 
         },
 
-        //toMyhouse:function(){
-        //    Lizard.goTo("myhouses");
-        //},
+        toMyhouse:function(){
+            Lizard.goTo("myhouses.html");
+        },
 
         toHouseUpload:function(){
             Lizard.goTo("houses_upload.html");

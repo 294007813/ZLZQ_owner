@@ -5,6 +5,8 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store",], functi
         events: {
             "click .house-info":"toHousesInfo",
             "click .icon-person":"toPersonal",
+            "click .icon-home":"toLocation",
+            "click .back":"toLocation",
         },
 
         toHousesInfo:function(){
@@ -12,7 +14,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store",], functi
         },
 
         onShow: function () {
-
+            this.hideLoading();
         },
 
 

@@ -9,7 +9,7 @@ define(['BaseView', "cUIInputClear", "Model", "Store", "text!TplLogin"], functio
                 "click .favourite":"toFavorite",
                 "click #register": "toReg",
                 "click .mine" :"toUserCenter",
-                "click .bottom-bar .rent":"toRent",
+                "click .icon-home":"toRent",
                 "click .bottom-bar .mine":"toPersonal",
                 "click .bottom-bar .order":"toOrderList",
                 //"click .bottom-bar .schedule":"toSchedule",
@@ -174,7 +174,8 @@ define(['BaseView', "cUIInputClear", "Model", "Store", "text!TplLogin"], functio
                     view: this,
                     events: {
                         returnHandler: function () {
-                            self.returnPage();
+                            //self.returnPage();
+                            window.location.href="newindex.html";
                         },
                         commitHandler: function () {
 

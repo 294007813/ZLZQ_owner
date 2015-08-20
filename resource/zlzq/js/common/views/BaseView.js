@@ -24,7 +24,8 @@ define(['cPageView', 'cGuider', 'cUtility','Store','Model', 'UIAlert'], function
 			});
 		},
 		toRent:function(e){
-			Lizard.goTo("newindex.html");
+			//Lizard.goTo("newindex.html");
+			window.location.href="newindex.html";
 		},
 
 		toOrderList:function(){
