@@ -243,7 +243,7 @@ body.lock{
 .form-list li .form-input{
 	flex:1;
 	padding: 18px 10px;
-	height: 18px;
+	height: 54px;
 	line-height: 18px;
 	font-size:14px;
 	color: #A9AAAC;
@@ -720,4 +720,12 @@ dd.pic-input{
 	background-image: -o-linear-gradient(top, rgba(255,255,255,0), rgba(255,255,255,1)); 
 	background-image: linear-gradient(top, rgba(255,255,255,0), rgba(255,255,255,1)); 
 	z-index: 4;
+}
+
+.house-type .cui-roller .cui-roller-bd{
+	display: none;
+}
+
+.house-type  .cui-roller .cui-roller-bd:last-child{
+	display: block;
 }
