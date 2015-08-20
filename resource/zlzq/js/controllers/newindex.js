@@ -6,8 +6,13 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store",], functi
             "click .iconBrush":"toDecorate",
             "click .iconHouse":"toHouseUpload",
             "click .person":"toPersonal",
+            //"click .indexButton":"toMyhouse",
 
         },
+
+        //toMyhouse:function(){
+        //    Lizard.goTo("myhouses");
+        //},
 
         toHouseUpload:function(){
             Lizard.goTo("houses_upload.html");
@@ -22,7 +27,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store",], functi
 
         },
         onShow: function () {
-            console.log(this.$el.find(".person"));
+            //console.log(this.$el.find(".person"));
             //console.log(this.$el.find(".iconHouse"));
             //console.log(this.$el.find(".iconBrush"))
         }
