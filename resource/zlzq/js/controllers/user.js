@@ -12,7 +12,8 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","UIGroupS
             "click .opt-list .score":"toMyScore",
             "click .opt-list .favorites":"toFavorite",
             "click .opt-list .order":"toOrderList",
-            "click .bottom-bar .rent":"toLocation",
+            //"click .bottom-bar .rent":"toRent",
+            "click .icon-home":"toRent",
             "click .bottom-bar .mine":"toMine",
             "click .bottom-bar .order":"toOrderList",
             //"click .bottom-bar .schedule":"toSchedule"
@@ -32,7 +33,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","UIGroupS
             Lizard.goTo("myScore.html");
         },
         toRent:function(e){
-            Lizard.goTo("newindex.html");
+            window.location.href="newindex.html";
         },
         toMine:function(e){
             Lizard.goTo("user.html");
@@ -83,7 +84,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","UIGroupS
                 },
                 events: {
                     returnHandler: function () {
-                        Lizard.goTo("order.html");
+                        window.location.href="newindex.html";
                     },
                     commitHandler: function () {
 
