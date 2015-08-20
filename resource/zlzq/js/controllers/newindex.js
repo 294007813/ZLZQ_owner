@@ -18,15 +18,17 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store",], functi
             Lizard.goTo("houses_upload.html");
         },
 
-
         toDecorate:function(){
-            Lizard.goTo("decoratelist.html");
+            //Lizard.goTo("decoratelist.html");
+            window.location.href="decoratelist.html";
         },
+
         onCreate:function(){
 
-
         },
+
         onShow: function () {
+            this.hideLoading();
             //console.log(this.$el.find(".person"));
             //console.log(this.$el.find(".iconHouse"));
             //console.log(this.$el.find(".iconBrush"))

@@ -7,11 +7,15 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","UIScroll
         events: {
 
             "click .house-list li": "toDecorateDetail",
-            "click .bottom-bar .rent":"toRent",
+            "click .back":"toBack",
             "click .bottom-bar .mine":"toPersonal",
             "click .bottom-bar .order":"toOrderList",
             "click .bottom-bar .schedule":"toSchedule",
             "click .search-icon":"toSearch"
+        },
+
+        toBack:function(){
+            window.location.href="newindex.html";
         },
 
         toDecorateDetail:function(e){

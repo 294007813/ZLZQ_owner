@@ -40,9 +40,11 @@ define(['cPageView', 'cGuider', 'cUtility','Store','Model', 'UIAlert'], function
 		},
 		toPersonal:function(e){
 			if(this.isLogin()){
-				Lizard.goTo("user.html");
+				//Lizard.goTo("user.html");
+				window.location.href="user.html";
 			}else{
-				Lizard.goTo("login.html");
+				//Lizard.goTo("login.html");
+				window.location.href="login.html";
 			}
 
 		},

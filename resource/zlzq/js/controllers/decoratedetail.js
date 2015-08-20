@@ -8,9 +8,13 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","text!Tpl
             "click .location_icon" :"toLocation",
             "click .search-btn":"toSearch",
             "click .info_list li:first-child":"toComment",
+            "click .back":"toBack",
 
         },
 
+        toBack:function(){
+            Lizard.goTo("decoratelist.html");
+        },
 
         toReserve:function(e){
             self.$el.find(".info_ct").hide();
