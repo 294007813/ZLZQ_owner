@@ -6,24 +6,32 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             "click .back": "toLocation",
             "click .icon-person": "toPersonal",
             "click .icon-home": "toLocation",
-            "click .form-list li:first-child": "showHouseType"
+            "click .form-list li:first-child": "showHouseType",
+            "click .pic-label.choose": "showPicType",
+            "click  .pic-box .cancel,.pic-box .pmask": "hidePicType",
+            "click #choose-box": "readFile",//选择相册
+            "click #camera": "camera"//拍照
         },
         camera: function (e) {
-            self.iframeContent.contentWindow.getPictureFromCamera(function(data){
-                $('#picture').attr('src','data:image/jpeg;base64,'+data);
-                self.cancelEditing();
-               // self.uploadPicture(data);
+            self.iframeContent.contentWindow.getPictureFromCamera(function (data) {
+                $(".pic-block").prepend('<label class="pic-label icon " > <img src="data:image/jpeg;base64,'+ data +'"/> </label>');
+                self.hidePicType();
             })
         },
         //点击选择相册
         readFile: function (e) {
-            self.iframeContent.contentWindow.getPictureFromPhoto(function(data){
-                $('#picture').attr('src','data:image/jpeg;base64,'+data);
-                self.cancelEditing();
-                //self.uploadPicture(data);
+            self.iframeContent.contentWindow.getPictureFromPhoto(function (data) {
+                $(".pic-block").prepend('<label class="pic-label icon " > <img src="data:image/jpeg;base64,'+ data +'"/> </label>');
+                self.hidePicType();
             })
 
 
+        },
+        hidePicType: function (e) {
+            self.$el.find(".pic-box").removeClass("slideIn");
+        },
+        showPicType: function (e) {
+            self.$el.find(".pic-box").addClass("slideIn");
         },
         showHouseType: function (e) {
             self.houseTypeScroller.show();
