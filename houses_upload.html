@@ -63,6 +63,13 @@
 	</div>
 	<div class="container greybg">
 		<form>
+			<dl class="form-dl">
+				<dt>标题</dt>
+				<dd>
+					<textarea id="title" placeholder="请填写标题(30字)" ></textarea>
+				</dd>
+			</dl>
+
 			<ul class="form-list">
 				<li>
 					<label for="neighbourhood">小区名称</label>
@@ -94,6 +101,12 @@
 				</li>
 			</ul>
 			<ul class="form-list">
+				<li class="form-select" id="area-select">
+					<label>区域</label>
+					<input type="text" class="form-input" id="area-show" readonly="" value="" />
+					<span>></span>
+					<input type="hidden" id="area" />
+				</li>
 				<li class="form-select" id="housetype-select">
 					<label>户型</label>
 					<input type="text" class="form-input" id="housetype-show" readonly="" value="" />
@@ -127,12 +140,7 @@
 					<input type="hidden" id="rentdeadline" />
 				</li>
 			</ul>
-			<dl class="form-dl">
-				<dt>标题</dt>
-				<dd>
-					<textarea id="title" placeholder="请填写标题(30字)" ></textarea>
-				</dd>
-			</dl>
+
 			<dl class="form-dl">
 				<dt>家具</dt>
 				<dd>
