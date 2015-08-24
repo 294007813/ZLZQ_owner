@@ -88,7 +88,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             device.fan =self.$el.find("#electronic-7")[0].checked ? 1 : 0;
             device.pc = self.$el.find("#electronic-8")[0].checked ? 1 : 0;
 
-            if(!self.user){
+            if(!self.isLogin()){
                 self.showMyToast("请先登录", 1500);
                 return;
             }
