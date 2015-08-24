@@ -7,6 +7,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store",], functi
             "click .iconHouse":"toHouseUpload",
             "click .icon-person":"toPersonal",
             "click .iconPad":"toMyhouse",
+            "click .iconNews":"toNews",
 
         },
 
@@ -22,6 +23,11 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store",], functi
             //Lizard.goTo("decoratelist.html");
             window.location.href="decoratelist.html";
         },
+
+        toNews:function(){
+        //Lizard.goTo("decoratelist.html");
+        window.location.href="newslist.html";
+    },
 
         onCreate:function(){
 
