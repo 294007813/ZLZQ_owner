@@ -1,19 +1,18 @@
-define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","text!TplDecorateDetail"], function (BaseView, cUIInputClear,cUIImageSlider, Model, Store,TplDecorateDetail) {
+define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","text!TplNewsDetail"], function (BaseView, cUIInputClear,cUIImageSlider, Model, Store,TplNewsDetail) {
     var self,
         listModel=Model.ListModel.getInstance();
     var View = BaseView.extend({
-        ViewName: 'decoratedetail',
+        ViewName: 'newsdetail',
         events: {
             "click .housing .btn":"toReserve",
             "click .location_icon" :"toLocation",
             "click .search-btn":"toSearch",
             "click .info_list li:first-child":"toComment",
             "click .back":"toBack",
-
         },
 
         toBack:function(){
-            Lizard.goTo("decoratelist.html");
+            Lizard.goTo("newslist.html");
         },
 
         toReserve:function(e){
@@ -30,7 +29,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","text!Tpl
         getDetail:function(callback) {
 
 
-                var url =Lizard.host+Lizard.apiUrl+"companies/" + Lizard.P("d");
+                var url =Lizard.host+Lizard.apiUrl+"newsitems/" + Lizard.P("d");
 
             $.ajax({
                 url: url,
@@ -64,11 +63,8 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","text!Tpl
 
                 self.setHeader();
 
-                self.$el.html(_.template(TplDecorateDetail, {decorate: data}));
-                //self.hideLoading();
-
+                self.$el.html(_.template(TplNewsDetail, {news: data}));
                 self.changeP();
-
             });
 
 
@@ -88,7 +84,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","text!Tpl
         //设置标题
         setHeader: function (type) {
             self.header.set({
-                title: '装修案例详情',
+                title: '新闻详情',
                 back: true,
                 backtext: '<i class="icon-back "></i> ',
                 view: this,
@@ -96,7 +92,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","text!Tpl
                 events: {
                     returnHandler: function () {
 
-                        Lizard.goTo("decoratelist.html");
+                        Lizard.goTo("newslist.html");
 
                     },
                     commitHandler: function () {

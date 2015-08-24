@@ -115,7 +115,7 @@ define(['BaseView', "cUIInputClear", "Model", "Store", "text!TplRegister"], func
                     url: url,
                     dataType: "json",
                     type: "post",
-                    data: {cell: mobile, password: password, password_confirmation: confirmPassword, type: "renter",vcode:code},
+                    data: {cell: mobile, password: password, password_confirmation: confirmPassword, type: "owner",vcode:code},
                     success: function (data) {
                         self.hideLoading();
                         if (data.error) {

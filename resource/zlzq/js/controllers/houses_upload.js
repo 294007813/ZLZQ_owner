@@ -10,7 +10,8 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             "click .pic-label.choose": "showPicType",
             "click  .pic-box .cancel,.pic-box .pmask": "hidePicType",
             "click #choose-box": "readFile",//选择相册
-            "click #camera": "camera"//拍照
+            "click #camera": "camera",//拍照,
+            "click .submitBtn":"submitHouseInfo"
         },
         camera: function (e) {
             self.iframeContent.contentWindow.getPictureFromCamera(function (data) {
@@ -55,6 +56,71 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             }
             return d1;
         },
+        submitHouseInfo:function(e) {
+
+            var realty = {};
+            realty.title = self.$el.find("#neighbourhood").val();
+            realty.quarter_title = self.$el.find("#neighbourhood").val();
+            realty.address = self.$el.find("#address").val();
+            realty.district_id = self.$el.find("#address").val();
+            ;
+            realty.room = self.$el.find("#housetype-show").val();
+            ;
+            realty.hall = "";
+            realty.wash = "";
+            realty.price = self.$el.find("#rent").val();
+            realty.area = self.$el.find("#square").val();
+            realty.total_height = "";
+            realty.decoration_type = "";
+            realty.direction = "";
+            realty.decoration_years = "";
+            realty.end_at = "";
+
+
+            var device = {};
+            device.chair = self.$el.find("#furniture-1")[0].checked ? 1 : 0;
+            device.teapoy = self.$el.find("#furniture-2")[0].checked ? 1 : 0;
+            device.sofa =self.$el.find("#furniture-3")[0].checked ? 1 : 0;
+            device.bed = self.$el.find("#furniture-4")[0].checked ? 1 : 0;
+            device.chest = self.$el.find("#furniture-5")[0].checked ? 1 : 0;
+            device.table = self.$el.find("#furniture-6")[0].checked ? 1 : 0;
+            device.tv_stand =self.$el.find("#furniture-7")[0].checked ? 1 : 0;
+            device.bookcase =self.$el.find("#furniture-8")[0].checked ? 1 : 0;
+
+            device.tv = self.$el.find("#electronic-1")[0].checked ? 1 : 0;
+            device.water_heater = self.$el.find("#electronic-2")[0].checked ? 1 : 0;
+            device.refrigerator =self.$el.find("#electronic-3")[0].checked ? 1 : 0;
+            device.air_condition = self.$el.find("#electronic-4")[0].checked ? 1 : 0;
+            device.hearth =self.$el.find("#electronic-5")[0].checked ? 1 : 0;
+            device.washer = self.$el.find("#electronic-6")[0].checked ? 1 : 0;
+            device.fan =self.$el.find("#electronic-7")[0].checked ? 1 : 0;
+            device.pc = self.$el.find("#electronic-8")[0].checked ? 1 : 0;
+
+            if(!self.user){
+                self.showMyToast("请先登录", 1500);
+                return;
+            }
+            self.showLoading();
+            var url = Lizard.host + Lizard.apiUrl + "owners/"+self.user.actor_id+"/realties?auth_token="+ self.user.authentication_token;
+            $.ajax({
+                url: url,
+                type: "POST",
+                data:{ "realty" : realty,"device":device },
+                success: function (data) {
+                    self.hideLoading();
+                    self.showMyToast("上传成功", 1500);
+
+                },
+                error: function (e) {
+                    self.hideLoading();
+                    self.showMyToast("网络错误", 1000);
+
+
+                }
+            });
+
+
+        },
         afterIframeLoad: function () {
             var iDoc = self.iframeContent.contentDocument || self.iframeContent.document;
             self.hideLoading();
@@ -96,6 +162,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 }
             })
             self.houseTypeScroller.$el.addClass("house-type");
+            self.iframeContent=1;
             if (!self.iframeContent) {
                 var iframe = document.createElement("iframe");
                 iframe.width = "100%";

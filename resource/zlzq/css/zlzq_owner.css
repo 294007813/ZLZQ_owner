@@ -174,8 +174,8 @@ body{overflow-x:hidden;overflow-y:auto;}
 }
 .indexButton a{
 	display: inline-block;
-	margin:0 3%;
-	width: 70px;
+	margin:0 1%;
+	width: 60px;
 }
 .indexButton a .icon{
 	width: 50px;
@@ -192,6 +192,10 @@ body{overflow-x:hidden;overflow-y:auto;}
 }
 .indexButton a .iconBrush{
 	background: url(../img/iconBrush.png) no-repeat center;
+	background-size: 50px 50px;
+}
+.indexButton a .iconNews{
+	background: url(../img/news.png) no-repeat center;
 	background-size: 50px 50px;
 }
 .indexButton a span{
