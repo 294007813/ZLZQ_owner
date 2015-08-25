@@ -276,13 +276,13 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","UIGroupS
         ensureName: function () {
 
             self.showLoading();
-            var url = Lizard.host + Lizard.apiUrl + "renters/" + self.getCurrentUser().actor_id;
+            var url = Lizard.host + Lizard.apiUrl + "owners/" + self.getCurrentUser().actor_id;
             $.ajax({
                 url: url,
                 type: "PUT",
                 dataType: "json",
                 data: {
-                    "renter[nick_name]": self.$el.find(".name-box .name").val(),
+                    "owner[nick_name]": self.$el.find(".name-box .name").val(),
                     auth_token: self.getCurrentUser().authentication_token
                 },
                 success: function (data) {
@@ -304,7 +304,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","UIGroupS
                 url: url,
                 dataType: "json",
                 type: "post",
-                data: {cell: self.getCurrentUser().cell, password: self.getCurrentUser().pwd},
+                data: {cell: self.getCurrentUser().cell, password: self.getCurrentUser().pwd,type: "owner"},
                 success: function (data) {
                     self.hideLoading();
                     if (data.error) {
