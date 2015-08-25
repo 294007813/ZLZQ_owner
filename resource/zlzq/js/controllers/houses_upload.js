@@ -199,62 +199,75 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             self.districtsScroller.show();
         },
         submitHouseInfo:function(e) {
+            //判断
+            if(!$.trim(self.$el.find("#title").val())){
+                self.showMyToast("请填写标题", 1000);
+                return;
+            }
+            if(!$.trim(self.$el.find("#address").val())){
+                self.showMyToast("请填写地址", 1000);
+                return;
+            }
 
-            var realty = {};
-            realty.title = self.$el.find("#title").val();
-            realty.quarter_title = self.$el.find("#neighbourhood").val();
-            realty.address = self.$el.find("#address").val();
-            realty.district_id = "";//区域ID
-            realty.room = "";//室
-            realty.hall = "";//厅
-            realty.wash = "";//卫
-            realty.price = self.$el.find("#rent").val();
-            realty.area = self.$el.find("#square").val();
-            realty.floor = self.$el.find("#layer").val();
-            realty.total_height = self.$el.find("#layerall").val();
-            realty.decoration_type = self.$el.find("#housing-show").val();
-            realty.direction = self.$el.find("#faceto-show").val();
-            realty.decoration_years = self.$el.find("#housingtime-show").val();
-            realty.end_at = self.$el.find("#rentdeadline-show").val();
+            //传值
+            var alldata={};
+            alldata={
+                "realty[title]": self.$el.find("#title").val(),
+                "realty[quarter_title]": self.$el.find("#neighbourhood").val(),
+                "realty[address]": self.$el.find("#address").val(),
+                "realty[district_id]": "",//区域ID
+                "realty[room]": "",//室
+                "realty[hall]": "",//厅
+                "realty[wash]": "",//卫
+                "realty[price]": self.$el.find("#rent").val(),
+                "realty[area]": self.$el.find("#square").val(),
+                "realty[floor]": self.$el.find("#layer").val(),
+                "realty[total_height]": self.$el.find("#layerall").val(),
+                "realty[decoration_type]": self.$el.find("#housing-show").val(),
+                "realty[direction]": self.$el.find("#faceto-show").val(),
+                "realty[decoration_years]": self.$el.find("#housingtime-show").val(),
+                "realty[end_at]": self.$el.find("#rentdeadline-show").val(),
 
 
-            var device = {};
-            device.chair = self.$el.find("#furniture-1")[0].checked ? 1 : 0;
-            device.teapoy = self.$el.find("#furniture-2")[0].checked ? 1 : 0;
-            device.sofa =self.$el.find("#furniture-3")[0].checked ? 1 : 0;
-            device.bed = self.$el.find("#furniture-4")[0].checked ? 1 : 0;
-            device.chest = self.$el.find("#furniture-5")[0].checked ? 1 : 0;
-            device.table = self.$el.find("#furniture-6")[0].checked ? 1 : 0;
-            device.tv_stand =self.$el.find("#furniture-7")[0].checked ? 1 : 0;
-            device.bookcase =self.$el.find("#furniture-8")[0].checked ? 1 : 0;
+                "device[chair]": self.$el.find("#furniture-1")[0].checked ? 1 : 0,
+                "device[teapoy]": self.$el.find("#furniture-2")[0].checked ? 1 : 0,
+                "device[sofa]": self.$el.find("#furniture-3")[0].checked ? 1 : 0,
+                "device[bed]": self.$el.find("#furniture-4")[0].checked ? 1 : 0,
+                "device[chest]": self.$el.find("#furniture-5")[0].checked ? 1 : 0,
+                "device[table]": self.$el.find("#furniture-6")[0].checked ? 1 : 0,
+                "device[tv_stand]": self.$el.find("#furniture-7")[0].checked ? 1 : 0,
+                "device[bookcase]": self.$el.find("#furniture-8")[0].checked ? 1 : 0,
 
-            device.tv = self.$el.find("#electronic-1")[0].checked ? 1 : 0;
-            device.water_heater = self.$el.find("#electronic-2")[0].checked ? 1 : 0;
-            device.refrigerator =self.$el.find("#electronic-3")[0].checked ? 1 : 0;
-            device.air_condition = self.$el.find("#electronic-4")[0].checked ? 1 : 0;
-            device.hearth =self.$el.find("#electronic-5")[0].checked ? 1 : 0;
-            device.washer = self.$el.find("#electronic-6")[0].checked ? 1 : 0;
-            device.fan =self.$el.find("#electronic-7")[0].checked ? 1 : 0;
-            device.pc = self.$el.find("#electronic-8")[0].checked ? 1 : 0;
+                "device[tv]": self.$el.find("#electronic-1")[0].checked ? 1 : 0,
+                "device[water_heater]": self.$el.find("#electronic-2")[0].checked ? 1 : 0,
+                "device[refrigerator]": self.$el.find("#electronic-3")[0].checked ? 1 : 0,
+                "device[air_condition]": self.$el.find("#electronic-4")[0].checked ? 1 : 0,
+                "device[hearth]": self.$el.find("#electronic-5")[0].checked ? 1 : 0,
+                "device[washer]": self.$el.find("#electronic-6")[0].checked ? 1 : 0,
+                "device[fan]": self.$el.find("#electronic-7")[0].checked ? 1 : 0,
+                "device[pc]": self.$el.find("#electronic-8")[0].checked ? 1 : 0,
 
-            device.good_traffic=self.$el.find("#label1")[0].checked ? 1 : 0;
-            device.garden=self.$el.find("#label2")[0].checked ? 1 : 0;
-            device.subway=self.$el.find("#label3")[0].checked ? 1 : 0;
-            device.lift=self.$el.find("#label4")[0].checked ? 1 : 0;
-            device.villa=self.$el.find("#label5")[0].checked ? 1 : 0;
-            device.standalone=self.$el.find("#label6")[0].checked ? 1 : 0;
+                "device[good_traffic]": self.$el.find("#label1")[0].checked ? 1 : 0,
+                "device[garden]": self.$el.find("#label2")[0].checked ? 1 : 0,
+                "device[subway]": self.$el.find("#label3")[0].checked ? 1 : 0,
+                "device[lift]": self.$el.find("#label4")[0].checked ? 1 : 0,
+                "device[villa]": self.$el.find("#label5")[0].checked ? 1 : 0,
+                "device[standalone]": self.$el.find("#label6")[0].checked ? 1 : 0,
+            }
 
             if(!self.isLogin()){
                 self.showMyToast("请先登录", 1500);
                 return;
             }
+            var user = self.getCurrentUser();
             self.showLoading();
             //var url = Lizard.host + Lizard.apiUrl + "owners/"+self.user.actor_id+"/realties?auth_token="+ self.user.authentication_token;
-            var url = Lizard.host + Lizard.apiUrl +"/realties?auth_token="+ self.user.authentication_token;
+            var url = Lizard.host + Lizard.apiUrl +"/realties?auth_token="+user.authentication_token;
             $.ajax({
                 url: url,
                 type: "POST",
-                data:{ "realty" : realty,"device":device },
+                //data:{ "realty" : realty,"device":device },
+                data:alldata,
                 success: function (data) {
                     self.hideLoading();
                     self.showMyToast("上传成功", 1500);
