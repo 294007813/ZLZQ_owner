@@ -113,6 +113,11 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 name: "豪华",
                 value:"豪华"
             });
+            subdis[subdis.length - 1].hs.push({
+                key: 5,
+                name: "精装",
+                value:"精装"
+            });
             return dis;
         },
         getHousingTime:function(e){
@@ -156,7 +161,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
         },
         getFaceto:function(e){
             var dis = [],
-                directions="朝向 正东 正南 正西 正北 东南 东北 西南 西北".split(" ");
+                directions="正东 正南 正西 正北 东南 东北 西南 西北".split(" ");
             dis.push({key: 1, name: 1, value: 1});
             dis[dis.length - 1].subdis = [];
             var subdis = dis[dis.length - 1].subdis;
