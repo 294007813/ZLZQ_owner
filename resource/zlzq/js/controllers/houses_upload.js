@@ -236,6 +236,13 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             device.fan =self.$el.find("#electronic-7")[0].checked ? 1 : 0;
             device.pc = self.$el.find("#electronic-8")[0].checked ? 1 : 0;
 
+            device.good_traffic=self.$el.find("#label1")[0].checked ? 1 : 0;
+            device.garden=self.$el.find("#label2")[0].checked ? 1 : 0;
+            device.subway=self.$el.find("#label3")[0].checked ? 1 : 0;
+            device.lift=self.$el.find("#label4")[0].checked ? 1 : 0;
+            device.villa=self.$el.find("#label5")[0].checked ? 1 : 0;
+            device.standalone=self.$el.find("#label6")[0].checked ? 1 : 0;
+
             if(!self.isLogin()){
                 self.showMyToast("请先登录", 1500);
                 return;
