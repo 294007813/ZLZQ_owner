@@ -13,8 +13,8 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","UIGroupS
             //"click .personal .opt-list .tel":"toUpdateTel",
             "click .gender-box div": "selectGender",
             "click .loginout": "loginout",
-            "click .avatar-box ": "modifyPic",//选择修改头像
-            "click  .pic-box .cancel": "cancelEditing",
+            "click .avatar-box": "modifyPic",//选择修改头像
+            "click  .pic-box1 .cancel": "cancelEditing",
             "click #choose-box": "readFile",//选择相册
             "click #camera": "camera",//拍照
             "click .exit": "exit"
@@ -61,7 +61,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","UIGroupS
         },
         uploadPicture:function(data){
             self.showLoading();
-            var url = Lizard.host + Lizard.apiUrl + "renters/"+self.user.actor_id+"/save_avatar?auth_token="+ self.user.authentication_token;
+            var url = Lizard.host + Lizard.apiUrl + "owners/"+self.user.actor_id+"/save_avatar?auth_token="+ self.user.authentication_token;
             $.ajax({
                 url: url,
                 type: "POST",
@@ -69,23 +69,24 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","UIGroupS
                 success: function (data) {
                     self.hideLoading();
                     self.showMyToast("上传成功", 1500);
+                    self.cancelEditing();
                     self.login();
 
                 },
                 error: function (e) {
                     self.hideLoading();
                     self.showMyToast("网络错误", 1000);
-
+                    self.cancelEditing();
 
                 }
             });
 
         },
         cancelEditing: function (e) {
-            this.$el.find(".pic-box").hide();
+            this.$el.find(".pic-box1").hide();
         },
         modifyPic: function (e) {
-            this.$el.find(".pic-box").show();
+            this.$el.find(".pic-box1").show();
         },
         loginout: function (e) {
             var user = self.getCurrentUser();
