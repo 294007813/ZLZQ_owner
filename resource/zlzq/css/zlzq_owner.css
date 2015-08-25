@@ -734,6 +734,15 @@ dd.pic-input{
 	display: block;
 }
 
+.district .cui-roller .cui-roller-bd{
+	display: none;
+}
+
+.district  .cui-roller .cui-roller-bd:last-child{
+	display: block;
+}
+
+
 .pic-box {
 	visibility: hidden;
 }
