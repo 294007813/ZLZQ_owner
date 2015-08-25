@@ -196,22 +196,20 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
         submitHouseInfo:function(e) {
 
             var realty = {};
-            realty.title = self.$el.find("#neighbourhood").val();
+            realty.title = self.$el.find("#title").val();
             realty.quarter_title = self.$el.find("#neighbourhood").val();
             realty.address = self.$el.find("#address").val();
-            realty.district_id = self.$el.find("#address").val();
-            ;
-            realty.room = self.$el.find("#housetype-show").val();
-            ;
-            realty.hall = "";
-            realty.wash = "";
+            realty.district_id = "";//区域ID
+            realty.room = "";//室
+            realty.hall = "";//厅
+            realty.wash = "";//卫
             realty.price = self.$el.find("#rent").val();
             realty.area = self.$el.find("#square").val();
-            realty.total_height = "";
-            realty.decoration_type = "";
-            realty.direction = "";
-            realty.decoration_years = "";
-            realty.end_at = "";
+            realty.total_height = self.$el.find("#layerall").val();
+            realty.decoration_type = self.$el.find("#housing-show").val();
+            realty.direction = self.$el.find("#faceto-show").val();
+            realty.decoration_years = self.$el.find("#housingtime-show").val();
+            realty.end_at = self.$el.find("#rentdeadline-show").val();
 
 
             var device = {};
@@ -238,7 +236,8 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 return;
             }
             self.showLoading();
-            var url = Lizard.host + Lizard.apiUrl + "owners/"+self.user.actor_id+"/realties?auth_token="+ self.user.authentication_token;
+            //var url = Lizard.host + Lizard.apiUrl + "owners/"+self.user.actor_id+"/realties?auth_token="+ self.user.authentication_token;
+            var url = Lizard.host + Lizard.apiUrl +"/realties?auth_token="+ self.user.authentication_token;
             $.ajax({
                 url: url,
                 type: "POST",
