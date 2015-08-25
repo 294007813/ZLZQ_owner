@@ -40,7 +40,11 @@
      <div class="avatar-box">
          头像
          <div>
+             <%if(user.avatar!=null){%>
              <img  class="avatar" id="picture" src="<%=user.avatar%>">
+             <%}else{%>
+             <img  class="avatar" id="picture" src="./resource/zlzq/images/myheader.png">
+             <%}%>
          </div>
          <i class="arrow"></i>
 
@@ -108,7 +112,7 @@
         </ul>
     </div>
 
-    <div class="pic-box" style="display: none">
+    <div class="pic-box1" style="display: none">
         <div style="position: fixed;top: 0;bottom: 0;   background-color: rgba(0, 0, 0, 0.7);  width: 10"></div>
         <div  class="menu" >
             <ul>
