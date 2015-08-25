@@ -210,6 +210,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             realty.wash = "";//卫
             realty.price = self.$el.find("#rent").val();
             realty.area = self.$el.find("#square").val();
+            realty.floor = self.$el.find("#layer").val();
             realty.total_height = self.$el.find("#layerall").val();
             realty.decoration_type = self.$el.find("#housing-show").val();
             realty.direction = self.$el.find("#faceto-show").val();
