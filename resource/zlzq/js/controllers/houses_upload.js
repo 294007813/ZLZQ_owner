@@ -228,7 +228,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 "realty[decoration_years]": self.$el.find("#housingtime-show").val(),
                 "realty[end_at]": self.$el.find("#rentdeadline-show").val(),
 
-
+                //家具
                 "device[chair]": self.$el.find("#furniture-1")[0].checked ? 1 : 0,
                 "device[teapoy]": self.$el.find("#furniture-2")[0].checked ? 1 : 0,
                 "device[sofa]": self.$el.find("#furniture-3")[0].checked ? 1 : 0,
@@ -237,7 +237,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 "device[table]": self.$el.find("#furniture-6")[0].checked ? 1 : 0,
                 "device[tv_stand]": self.$el.find("#furniture-7")[0].checked ? 1 : 0,
                 "device[bookcase]": self.$el.find("#furniture-8")[0].checked ? 1 : 0,
-
+                //家电
                 "device[tv]": self.$el.find("#electronic-1")[0].checked ? 1 : 0,
                 "device[water_heater]": self.$el.find("#electronic-2")[0].checked ? 1 : 0,
                 "device[refrigerator]": self.$el.find("#electronic-3")[0].checked ? 1 : 0,
@@ -246,7 +246,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 "device[washer]": self.$el.find("#electronic-6")[0].checked ? 1 : 0,
                 "device[fan]": self.$el.find("#electronic-7")[0].checked ? 1 : 0,
                 "device[pc]": self.$el.find("#electronic-8")[0].checked ? 1 : 0,
-
+                //标签
                 "device[good_traffic]": self.$el.find("#label1")[0].checked ? 1 : 0,
                 "device[garden]": self.$el.find("#label2")[0].checked ? 1 : 0,
                 "device[subway]": self.$el.find("#label3")[0].checked ? 1 : 0,
