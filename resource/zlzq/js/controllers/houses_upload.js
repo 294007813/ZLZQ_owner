@@ -21,14 +21,14 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
         },
         camera: function (e) {
             self.iframeContent.contentWindow.getPictureFromCamera(function (data) {
-                $(".pic-block").prepend('<label class="pic-label icon " > <img src="data:image/jpeg;base64,'+ data +'"/> </label>');
+                $(".pic-block").prepend('<label class="pic-label icon" > <img class="housepic" src="data:image/jpeg;base64,'+ data +'"/> </label>');
                 self.hidePicType();
             })
         },
         //点击选择相册
         readFile: function (e) {
             self.iframeContent.contentWindow.getPictureFromPhoto(function (data) {
-                $(".pic-block").prepend('<label class="pic-label icon " > <img src="data:image/jpeg;base64,'+ data +'"/> </label>');
+                $(".pic-block").prepend('<label class="pic-label icon" > <img class="housepic" src="data:image/jpeg;base64,'+ data +'"/> </label>');
                 self.hidePicType();
             })
 
@@ -77,7 +77,8 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
         },
         getDistricts: function (callback) {
             $.ajax({
-                url: self.url + '/api/v1/districts',
+                //url: self.url + '/api/v1/districts',
+                url:  Lizard.host + Lizard.apiUrl+ 'districts',
                 dataType: "json",
                 contentType: "application/json",
                 type: "get",
@@ -208,6 +209,10 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 self.showMyToast("请填写地址", 1000);
                 return;
             }
+            if(!$.trim(self.$el.find("#area-show").val())){
+                self.showMyToast("请选择区域", 1000);
+                return;
+            }
 
             var houseType=self.$el.find("#housetype-show").val();
             //传值
@@ -261,18 +266,18 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 return;
             }
             var user = self.getCurrentUser();
+            var realtyid=0;
             self.showLoading();
-            //var url = Lizard.host + Lizard.apiUrl + "owners/"+self.user.actor_id+"/realties?auth_token="+ self.user.authentication_token;
-            var url = Lizard.host + Lizard.apiUrl +"/realties?auth_token="+user.authentication_token;
+            var url = Lizard.host + Lizard.apiUrl +"realties?auth_token="+user.authentication_token;
             $.ajax({
                 url: url,
                 type: "POST",
-                //data:{ "realty" : realty,"device":device },
                 data:alldata,
                 success: function (data) {
                     self.hideLoading();
                     self.showMyToast("上传成功", 1500);
-
+                    realtyid=data.realty.id;
+                    self.uphousepic(realtyid);
                 },
                 error: function (e) {
                     self.hideLoading();
@@ -281,6 +286,9 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
 
                 }
             });
+
+
+
 
 
         },
@@ -498,7 +506,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                     this.destroy()
                 }
             });
-            self.iframeContent=1;
+            //self.iframeContent=1;
             if (!self.iframeContent) {
                 var iframe = document.createElement("iframe");
                 iframe.width = "100%";
@@ -526,7 +534,36 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             }
 
 
-        }
+        },
+
+        //房源图片上传
+        uphousepic:function(realtyid){
+            self.$el.find(".housepic").each(function(){
+                self.showLoading();
+                var user = self.getCurrentUser();
+                var url = Lizard.host + Lizard.apiUrl +"media_resources?realty_id="+realtyid+"&auth_token="+user.authentication_token;
+                //alert(realtyid);
+                //alert($(this).attr("src"));
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: {"media_resource[avatar]": $(this).attr("src")},
+                    success: function (data) {
+                        self.hideLoading();
+                        self.showMyToast("图片上传成功", 1000);
+
+                    },
+                    error: function (e) {
+                        self.hideLoading();
+                        self.showMyToast("网络错误", 1000);
+
+
+                    }
+                })
+            })
+        },
+
+
 
     })
     return View;
