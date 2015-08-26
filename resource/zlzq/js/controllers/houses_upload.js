@@ -209,16 +209,17 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 return;
             }
 
+            var houseType=self.$el.find("#housetype-show").val();
             //传值
             var alldata={};
             alldata={
                 "realty[title]": self.$el.find("#title").val(),
                 "realty[quarter_title]": self.$el.find("#neighbourhood").val(),
                 "realty[address]": self.$el.find("#address").val(),
-                "realty[district_id]": "",//区域ID
-                "realty[room]": "",//室
-                "realty[hall]": "",//厅
-                "realty[wash]": "",//卫
+                "realty[district_id]": self.$el.find("#area-show").data("id"),//区域ID
+                "realty[room]": houseType.substring(0,houseType.lastIndexOf("室")),//室
+                "realty[hall]": houseType.substring(2,houseType.lastIndexOf("厅")),//厅
+                "realty[wash]": houseType.substring(4,houseType.lastIndexOf("卫")),//卫
                 "realty[price]": self.$el.find("#rent").val(),
                 "realty[area]": self.$el.find("#square").val(),
                 "realty[floor]": self.$el.find("#layer").val(),
@@ -301,7 +302,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 subdis.push({key: 1, name: 1, value: 1});
                 subdis[subdis.length - 1].districts = [];
 
-                for (var i = 0; i < districts.length; i++) {
+                for (var i = 0; i < districts.length-1; i++) {
                     subdis[subdis.length - 1].districts.push({
                         key: districts[i].id,
                         name: districts[i].title,
@@ -327,7 +328,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                         e.reload(t.districts), e.setIndex(0)
                     }],
                     onOkAction: function (item) {
-                        self.$el.find("#area-show").val(item[2].name)
+                        self.$el.find("#area-show").val(item[2].name).data("id",item[2].key);
                         this.hide()
                     },
                     onCancelAction: function () {
@@ -497,7 +498,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                     this.destroy()
                 }
             });
-
+            self.iframeContent=1;
             if (!self.iframeContent) {
                 var iframe = document.createElement("iframe");
                 iframe.width = "100%";
