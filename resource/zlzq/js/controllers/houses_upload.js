@@ -1,7 +1,7 @@
 define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupSelect"], function (BaseView, cUIInputClear,cUIImageSlider, Model, Store,UIGroupSelect) {
     var self;
     var View = BaseView.extend({
-        url: "http://zlzq.easybird.cn",
+        //url: "http://zlzq.easybird.cn",
         ViewName: 'houses_upload',
         events: {
             "click .back": "toLocation",

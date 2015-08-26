@@ -12,11 +12,17 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store",], functi
         },
 
         toMyhouse:function(){
-            Lizard.goTo("myhouses.html");
+            if(!self.isLogin()){
+                self.showMyToast("请先登录", 1500);
+            }else
+                Lizard.goTo("myhouses.html");
         },
 
         toHouseUpload:function(){
-            Lizard.goTo("houses_upload.html");
+            if(!self.isLogin()){
+                self.showMyToast("请先登录", 1500);
+            }else
+                Lizard.goTo("houses_upload.html");
         },
 
         toDecorate:function(){
