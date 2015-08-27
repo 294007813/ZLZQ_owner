@@ -1,4 +1,4 @@
-define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store",], function (BaseView, cUIInputClear,cUIImageSlider, Model, Store) {
+define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","text!TplHouseInfo"], function (BaseView, cUIInputClear,cUIImageSlider, Model, Store,TplHouseInfo) {
     var self;
     var View = BaseView.extend({
         ViewName: 'houses_info',
@@ -18,7 +18,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store",], functi
                 self.showMyToast("未登录", 1500);
                 return;
             }
-            var url = Lizard.host + Lizard.apiUrl + "owners/" + self.user.actor_id + "/realties/my_owner_realties?auth_token=" + self.user.authentication_token;
+            var url = Lizard.host + Lizard.apiUrl + "/realties/my_owner_realties?auth_token=" + self.user.authentication_token;
             $.ajax({
                 url: url,
                 type: "get",
@@ -37,9 +37,12 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store",], functi
         },
         onCreate: function () {
             self = this;
+            self.user= this.getCurrentUser()
         },
         onShow: function () {
-            self.getHouseInfo(function () {
+            self.getHouseInfo(function (data) {
+                console.log(data);
+                self.$el.html(_.template(TplHouseInfo)({realties: data.realties[0]}));
                 self.hideLoading();
             })
         }

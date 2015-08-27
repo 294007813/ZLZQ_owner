@@ -16,9 +16,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store",], functi
 
         onShow: function () {
             this.hideLoading();
-        },
-
-
+        }
 
     });
     return View;
