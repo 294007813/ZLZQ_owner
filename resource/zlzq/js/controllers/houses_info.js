@@ -42,7 +42,14 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","text!Tpl
         onShow: function () {
             self.getHouseInfo(function (data) {
                 console.log(data);
-                self.$el.html(_.template(TplHouseInfo)({realties: data.realties[0]}));
+                var id = Lizard.P("id"),
+                    i = 0;
+                for (; i < data.realties.length; i++) {
+                    if (data.realties[i].id == id) {
+                        break;
+                    }
+                }
+                self.$el.html(_.template(TplHouseInfo)({realties: data.realties[i]}));
                 self.hideLoading();
             })
         }
