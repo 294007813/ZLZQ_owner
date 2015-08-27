@@ -18,7 +18,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","text!Tpl
                 self.showMyToast("未登录", 1500);
                 return;
             }
-            var url = Lizard.host + Lizard.apiUrl + "/realties/my_owner_realties?auth_token=" + self.user.authentication_token;
+            var url = Lizard.host + Lizard.apiUrl + "/realties/" + Lizard.P("id");
             $.ajax({
                 url: url,
                 type: "get",

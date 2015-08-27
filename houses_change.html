@@ -11,13 +11,50 @@
 	<link rel="stylesheet" type="text/css" href="./resource/zlzq/css/zlzq_owner.css" />
 </head>
 <body>
+<div id="main" style="padding-top:0;">
+	<div class="main-frame">
+		<div class="main-viewport">
+		</div>
+		<div class="main-state"></div>
+	</div>
+</div>
+
+<div id="footer"></div>
+<div id="loading">
+	<div class="container">
+		<div class="std_loading"></div>
+		LOADING
+	</div>
+
+	<div class="loading_bg"></div>
+</div>
+
+<script type="text/lizard-config">
+     {
+     "url_schema": "houses_change",
+     "viewName":"houses_change",
+     "view":{
+        "viewport": Lizard.T("viewportTmpl")
+     },
+     "controller": "resource/zlzq/js/controllers/houses_change.js"
+      }
+</script>
+<script id="viewportTmpl" type="text/lizard-template">
 	<div class="nav">
 		<a class="back" href="#"></a>
-		<h1>房源详情</h1>
-		<a class="next" href="#">修改</a>
+		<h1>房源修改</h1>
+		<a class="next" href="#"></a>
 	</div>
+
 	<div class="container greybg">
 		<form>
+			<dl class="form-dl">
+				<dt>标题</dt>
+				<dd>
+					<textarea id="title" placeholder="请填写标题(30字以内)" ></textarea>
+				</dd>
+			</dl>
+
 			<ul class="form-list">
 				<li>
 					<label for="neighbourhood">小区名称</label>
@@ -49,6 +86,12 @@
 				</li>
 			</ul>
 			<ul class="form-list">
+				<li class="form-select" id="area-select">
+					<label>区域</label>
+					<input type="text" class="form-input" id="area-show" readonly="" value="" />
+					<span>></span>
+					<input type="hidden" id="area" />
+				</li>
 				<li class="form-select" id="housetype-select">
 					<label>户型</label>
 					<input type="text" class="form-input" id="housetype-show" value="一室一厅" />
@@ -82,13 +125,7 @@
 					<input type="hidden" id="rentdeadline" />
 				</li>
 			</ul>
-			<dl class="form-dl">
-				<dt>标题</dt>
-				<dd>
-					<textarea id="title" placeholder="请填写标题(30字)" >标题标题标题标题标题标题标题标题标题标题标题标题</textarea>
-					<i class="delete"></i>
-				</dd>
-			</dl>
+
 			<dl class="form-dl">
 				<dt>家具</dt>
 				<dd>
@@ -282,7 +319,20 @@
 					</ul>
 				</dd>
 			</dl>
+			<div class="submitArea">
+				<input type="button" class="submitBtn" value="修改房源" />
+			</div>
 		</form>
+	</div>
+	<div class="pic-box" >
+		<div class="pmask" ></div>
+		<div  class="menu" >
+			<ul>
+				<li id="camera">拍照</li>
+				<li id="choose-box">从相册中选择</li>
+				<li class="cancel">取消</li>
+			</ul>
+		</div>
 	</div>
 	<ul class="tab1">
 		<li>
@@ -298,5 +348,7 @@
 			<span>我的</span>
 		</li>
 	</ul>
+</script>
 </body>
+<script type="text/javascript" src="resource/hih5/js/lib/hih5.core.js" pdconfig="resource/zlzq/js/zlzqconfig.js" lizardconfig="isHideAllLoading:true"></script>
 </html>
