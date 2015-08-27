@@ -18,7 +18,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             "click #choose-box": "readFile",//选择相册
             "click #camera": "camera",//拍照,
             "click .submitBtn":"submitHouseInfo",
-            "click .form-dl input":"choiceTag"
+            //"click .form-dl li":"choiceTag"
         },
         camera: function (e) {
             self.iframeContent.contentWindow.getPictureFromCamera(function (data) {
@@ -563,7 +563,17 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             })
         },
 
-
+        //选择标签
+        choiceTag:function(){
+            alert("0");
+            if($(this).attr("checked")==""){
+                $(this).removeAttr("checked");
+                alert("1");
+            }else {
+                $(this).attr("checked","");
+                alert("2");
+            }
+        },
 
     })
     return View;
