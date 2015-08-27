@@ -5,6 +5,14 @@
 </div>
 <div class="container greybg">
     <form>
+        <dl class="form-dl">
+            <dt>标题</dt>
+            <dd>
+                <!--<textarea id="title" placeholder="请填写标题(30字以内)" ></textarea>-->
+                <label for="title">小区名称</label>
+                <div class="input-cotent" id="title"><%=realties.title%></div>
+            </dd>
+        </dl>
         <ul class="form-list">
             <li>
                 <label for="neighbourhood">小区名称</label>
@@ -28,6 +36,11 @@
             </li>
         </ul>
         <ul class="form-list">
+            <li class="form-select" id="area-select">
+                <label>区域</label>
+                <!--<input type="text" class="form-input" id="area-show" readonly="" value="" />-->
+                <div class="input-cotent" id="area" ><%=realties.realty_type%></div>
+            </li>
             <li class="form-select" id="housetype-select">
                 <label>户型</label>
                 <div class="input-cotent" id="housetype" ><%=realties.realty_type%></div>
@@ -53,12 +66,7 @@
                 <div class="input-cotent"  id="rentdeadline" >2015/10/10至2016/12/12</div>
             </li>
         </ul>
-        <dl class="form-dl">
-            <dt>标题</dt>
-            <dd>
-                <div id="title">标题标题标题标题标题</div>
-            </dd>
-        </dl>
+
         <dl class="form-dl">
             <dt>家具</dt>
             <dd>
