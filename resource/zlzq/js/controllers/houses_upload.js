@@ -17,7 +17,8 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             "click #rentdeadline-select":"showDateScroller",
             "click #choose-box": "readFile",//选择相册
             "click #camera": "camera",//拍照,
-            "click .submitBtn":"submitHouseInfo"
+            "click .submitBtn":"submitHouseInfo",
+            "click .form-dl input":"choiceTag"
         },
         camera: function (e) {
             self.iframeContent.contentWindow.getPictureFromCamera(function (data) {
@@ -542,21 +543,20 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 self.showLoading();
                 var user = self.getCurrentUser();
                 var url = Lizard.host + Lizard.apiUrl +"media_resources?realty_id="+realtyid+"&auth_token="+user.authentication_token;
-                //alert(realtyid);
-                //alert($(this).attr("src"));
                 $.ajax({
                     url: url,
                     type: "POST",
-                    data: {"media_resource[avatar]": $(this).attr("src")},
+                    data: {"avatar": $(this).attr("src")},
                     success: function (data) {
                         self.hideLoading();
                         self.showMyToast("图片上传成功", 1000);
+                        Lizard.goTo("newindex.html");
 
                     },
                     error: function (e) {
                         self.hideLoading();
                         self.showMyToast("网络错误", 1000);
-
+                        Lizard.goTo("newindex.html");
 
                     }
                 })

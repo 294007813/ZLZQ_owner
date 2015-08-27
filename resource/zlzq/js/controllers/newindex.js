@@ -11,6 +11,8 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store",], functi
 
         },
 
+
+
         toMyhouse:function(){
             if(!self.isLogin()){
                 self.showMyToast("请先登录", 1500);
