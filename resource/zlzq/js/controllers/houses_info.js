@@ -38,6 +38,17 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","text!Tpl
                 }
             });
         },
+
+        gitPic: function(data){
+            var pic=[];
+            pic=data.realty.media;
+            //alert("length:"+pic.length);
+            for(i=0;i<data.realty.media.length;i++){
+                $(".pic-block").append('<label class="pic-label icon"><img src="'+pic[i].avatar+'"/></label>');
+                //alert("src:"+pic[i].avatar);
+            }
+        },
+
         onCreate: function () {
             self = this;
             self.user= this.getCurrentUser()
@@ -47,8 +58,11 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","text!Tpl
 
                 self.$el.html(_.template(TplHouseInfo)({realties: data.realty}));
                 self.hideLoading();
+                //alert("1");
+                self.gitPic(data);
+                //alert("2");
             })
-        }
+        },
 
 
     });

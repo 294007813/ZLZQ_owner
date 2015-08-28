@@ -22,7 +22,7 @@
         <ul class="form-list">
             <li>
                 <label for="neighbourhood">小区名称</label>
-                <div class="input-cotent" id="neighbourhood">???
+                <div class="input-cotent" id="neighbourhood">???=realties.quarter_title
                     <%if(realties.quarter_title!=null){%>
                     <%=realties.quarter_title%></div>
                     <%}%>
@@ -64,7 +64,7 @@
             </li>
             <li class="form-select" id="housingtime-select">
                 <label>装修年限</label>
-                <div class="input-cotent"  id="housingtime" >???</div>
+                <div class="input-cotent"  id="housingtime" >???=realties.decoration_years</div>
 
 
             </li>
@@ -72,7 +72,7 @@
         <ul class="form-list">
             <li class="form-select" id="rentdeadline-select">
                 <label>租赁到期</label>
-                <div class="input-cotent"  id="rentdeadline" >???</div>
+                <div class="input-cotent"  id="rentdeadline" >???=realties.end_at</div>
             </li>
         </ul>
         <% var device=realties.house_device.house_device  %>
@@ -206,12 +206,9 @@
             <dt>上传照片</dt>
             <dd class="pic-input">
                 <div class="pic-block">
-                    <label class="pic-label icon">
-                        <img src="./pic/upimg1.png"/>
-                    </label>
-                    <label class="pic-label icon">
-                        <img src="./pic/upimg1.png"/>
-                    </label>
+                    <!--<label class="pic-label icon">-->
+                        <!--<img src="./pic/upimg1.png"/>-->
+                    <!--</label>-->
                 </div>
                 <p>有图有真相，能更快将房子租出去哦</p>
             </dd>
