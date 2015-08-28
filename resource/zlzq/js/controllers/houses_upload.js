@@ -4,7 +4,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
         //url: "http://zlzq.easybird.cn",
         ViewName: 'houses_upload',
         events: {
-            "click .back": "toLocation",
+            "click .back": "toBack",
             "click .icon-person": "toPersonal",
             "click .icon-home": "toLocation",
             "click #housetype-select": "showHouseType",
@@ -269,24 +269,45 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             var user = self.getCurrentUser();
             var realtyid = 0;
             self.showLoading();
-            var url = Lizard.host + Lizard.apiUrl + "realties?auth_token=" + user.authentication_token;
-            $.ajax({
-                url: url,
-                type: "POST",
-                data: alldata,
-                success: function (data) {
-                    self.hideLoading();
-                    self.showMyToast("上传成功", 1500);
-                    realtyid = data.realty.id;
-                    self.uphousepic(realtyid);
-                },
-                error: function (e) {
-                    self.hideLoading();
-                    self.showMyToast("网络错误", 1000);
+            if (self.hid) {
+                var url =Lizard.host + Lizard.apiUrl + "realties/"+self.hid+"?auth_token="+user.authentication_token;
+                $.ajax({
+                    url: url,
+                    type: "PUT",
+                    data: alldata,
+                    success: function (data) {
+                        self.hideLoading();
+                        self.showMyToast("更新成功", 1500);
+                        realtyid = data.realty.id;
+                        self.uphousepic(realtyid);
+                    },
+                    error: function (e) {
+                        self.hideLoading();
+                        self.showMyToast("网络错误", 1000);
 
 
-                }
-            });
+                    }
+                });
+            }else {
+                var url = Lizard.host + Lizard.apiUrl + "realties?auth_token=" + user.authentication_token;
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: alldata,
+                    success: function (data) {
+                        self.hideLoading();
+                        self.showMyToast("上传成功", 1500);
+                        realtyid = data.realty.id;
+                        self.uphousepic(realtyid);
+                    },
+                    error: function (e) {
+                        self.hideLoading();
+                        self.showMyToast("网络错误", 1000);
+
+
+                    }
+                });
+            }
 
 
         },
@@ -322,6 +343,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 self.user= this.getCurrentUser()
                 self.getHouseInfo(function (data) {
                     self.$el.html(_.template(TplHouseUpload)({realties: data.realty}));
+                    $(".submitBtn").attr("value","修改房源");
                     self.hideLoading();
                 })
             } else {
@@ -540,7 +562,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                     this.destroy()
                 }
             });
-            self.iframeContent = 1;
+            //self.iframeContent = 1;
             if (!self.iframeContent) {
                 var iframe = document.createElement("iframe");
                 iframe.width = "100%";
@@ -594,6 +616,15 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                     }
                 })
             })
+            Lizard.goTo("myhouses.html");
+        },
+
+        toBack:function(){
+            if (self.hid) {
+                Lizard.goTo("houses_info.html?id=" + self.hid);
+            }else{
+                Lizard.goTo("newindex.html");
+            }
         },
 
         //选择标签
