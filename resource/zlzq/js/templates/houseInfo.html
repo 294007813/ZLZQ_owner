@@ -35,6 +35,7 @@
                 <div class="input-cotent" id="layer" >3/10&nbsp;F</div>
             </li>
         </ul>
+
         <ul class="form-list">
             <li class="form-select" id="area-select">
                 <label>区域</label>
@@ -66,55 +67,55 @@
                 <div class="input-cotent"  id="rentdeadline" >2015/10/10至2016/12/12</div>
             </li>
         </ul>
-
+        <% var device=realties.house_device.house_device  %>
         <dl class="form-dl">
             <dt>家具</dt>
             <dd>
                 <ul class="icon-radiolist">
                     <li>
-                        <label class="on">
+                        <label class="<%=device.chair ?'on':''%>">
                             <i class="icon icon-radio unvisi"></i>
                             <i class="icon icon-img icon-chair"></i>
                             <span>椅子</span>
                         </label>
                     </li>
                     <li>
-                        <label>
+                        <label class="<%=device.teapoy ?'on':''%>">
                             <i class="icon icon-radio unvisi"></i>
                             <i class="icon icon-img icon-teapoy"></i>
                             <span>茶几</span>
                         </label>
                     </li>
                     <li>
-                        <label>
+                        <label class="<%=device.sofa ?'on':''%>">
                             <i class="icon icon-radio unvisi"></i>
                             <i class="icon icon-img icon-sofa"></i>
                             <span>沙发</span>
                         </label>
                     </li>
                     <li>
-                        <label>
+                        <label class="<%=device.bed ?'on':''%>">
                             <i class="icon icon-radio unvisi"></i>
                             <i class="icon icon-img icon-bed"></i>
                             <span>床</span>
                         </label>
                     </li>
                     <li>
-                        <label>
+                        <label class="<%=device.chair ?'on':''%>">
                             <i class="icon icon-radio unvisi"></i>
                             <i class="icon icon-img icon-wardboard"></i>
                             <span>衣柜</span>
                         </label>
                     </li>
                     <li>
-                        <label>
+                        <label class="<%=device.chair ?'on':''%>">
                             <i class="icon icon-radio unvisi"></i>
                             <i class="icon icon-img icon-table"></i>
                             <span>餐桌</span>
                         </label>
                     </li>
                     <li>
-                        <label>
+                        <label class="<%=device.chair ?'on':''%>">
                             <i class="icon icon-radio unvisi"></i>
                             <i class="icon icon-img icon-tvbench"></i>
                             <span>电视柜</span>

@@ -18,7 +18,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","text!Tpl
                 self.showMyToast("未登录", 1500);
                 return;
             }
-            var url = Lizard.host + Lizard.apiUrl + "/realties/" + Lizard.P("id");
+            var url = Lizard.host + Lizard.apiUrl + "realties/" + Lizard.P("id");
             $.ajax({
                 url: url,
                 type: "get",
@@ -41,15 +41,8 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","text!Tpl
         },
         onShow: function () {
             self.getHouseInfo(function (data) {
-                console.log(data);
-                var id = Lizard.P("id"),
-                    i = 0;
-                for (; i < data.realties.length; i++) {
-                    if (data.realties[i].id == id) {
-                        break;
-                    }
-                }
-                self.$el.html(_.template(TplHouseInfo)({realties: data.realties[i]}));
+
+                self.$el.html(_.template(TplHouseInfo)({realties: data.realty}));
                 self.hideLoading();
             })
         }
