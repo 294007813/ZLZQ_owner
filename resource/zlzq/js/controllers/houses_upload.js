@@ -1,4 +1,4 @@
-define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupSelect"], function (BaseView, cUIInputClear,cUIImageSlider, Model, Store,UIGroupSelect) {
+define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupSelect","text!TplHouseUpload"], function (BaseView, cUIInputClear,cUIImageSlider, Model, Store,UIGroupSelect,TplHouseUpload) {
     var self;
     var View = BaseView.extend({
         //url: "http://zlzq.easybird.cn",
@@ -11,25 +11,25 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             "click #housing-show": "showHousing",
             "click .pic-label.choose": "showPicType",
             "click  .pic-box .cancel,.pic-box .pmask": "hidePicType",
-            "click #area-select":"showDistrictsScroller",
-            "click #housingtime-show":"showHousingTimeScroller",
-            "click #faceto-show":"showDirectionScroller",
-            "click #rentdeadline-select":"showDateScroller",
+            "click #area-select": "showDistrictsScroller",
+            "click #housingtime-show": "showHousingTimeScroller",
+            "click #faceto-show": "showDirectionScroller",
+            "click #rentdeadline-select": "showDateScroller",
             "click #choose-box": "readFile",//选择相册
             "click #camera": "camera",//拍照,
-            "click .submitBtn":"submitHouseInfo",
+            "click .submitBtn": "submitHouseInfo",
             //"click .form-dl li":"choiceTag"
         },
         camera: function (e) {
             self.iframeContent.contentWindow.getPictureFromCamera(function (data) {
-                $(".pic-block").prepend('<label class="pic-label icon" > <img class="housepic" src="data:image/jpeg;base64,'+ data +'"/> </label>');
+                $(".pic-block").prepend('<label class="pic-label icon" > <img class="housepic" src="data:image/jpeg;base64,' + data + '"/> </label>');
                 self.hidePicType();
             })
         },
         //点击选择相册
         readFile: function (e) {
             self.iframeContent.contentWindow.getPictureFromPhoto(function (data) {
-                $(".pic-block").prepend('<label class="pic-label icon" > <img class="housepic" src="data:image/jpeg;base64,'+ data +'"/> </label>');
+                $(".pic-block").prepend('<label class="pic-label icon" > <img class="housepic" src="data:image/jpeg;base64,' + data + '"/> </label>');
                 self.hidePicType();
             })
 
@@ -44,26 +44,26 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
         showHouseType: function (e) {
             self.houseTypeScroller.show();
         },
-        showHousing:function(e){
+        showHousing: function (e) {
             self.housingScroller.show();
         },
-        showHousingTimeScroller:function(e) {
+        showHousingTimeScroller: function (e) {
             self.housingTimeScroller.show();
         },
-        showDirectionScroller:function(e){
+        showDirectionScroller: function (e) {
             self.directionScroller.show();
         },
-        showDateScroller:function(e){
+        showDateScroller: function (e) {
             self.dateScroller.show();
         },
         getHouseType: function (e) {
             var d1 = [];
             for (var i = 1; i < 6; i++) {
-                d1.push({key: i, name: (i+"室"), value: (i+"室")});
+                d1.push({key: i, name: (i + "室"), value: (i + "室")});
                 d1[d1.length - 1].halls = [];
                 var d2 = d1[d1.length - 1].halls;
                 for (var j = 1; j < 6; j++) {
-                    d2.push({key: j, name: j+"厅", value: j+"厅"});
+                    d2.push({key: j, name: j + "厅", value: j + "厅"});
                     d2[d2.length - 1].toilets = [];
                     var d3 = d2[d2.length - 1].toilets;
                     d3.push({key: 1, name: '1卫', value: '1'});
@@ -79,7 +79,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
         getDistricts: function (callback) {
             $.ajax({
                 //url: self.url + '/api/v1/districts',
-                url:  Lizard.host + Lizard.apiUrl+ 'districts',
+                url: Lizard.host + Lizard.apiUrl + 'districts',
                 dataType: "json",
                 contentType: "application/json",
                 type: "get",
@@ -88,7 +88,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 }
             });
         },
-        getHousing:function(e){
+        getHousing: function (e) {
             var dis = [];
             dis.push({key: 1, name: 1, value: 1});
             dis[dis.length - 1].subdis = [];
@@ -98,31 +98,31 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             subdis[subdis.length - 1].hs.push({
                 key: 1,
                 name: "毛坯",
-                value:"毛坯"
+                value: "毛坯"
             });
             subdis[subdis.length - 1].hs.push({
                 key: 2,
                 name: "简装",
-                value:"简装"
+                value: "简装"
             });
             subdis[subdis.length - 1].hs.push({
                 key: 3,
                 name: "居住",
-                value:"居住"
+                value: "居住"
             });
             subdis[subdis.length - 1].hs.push({
                 key: 4,
                 name: "豪华",
-                value:"豪华"
+                value: "豪华"
             });
             subdis[subdis.length - 1].hs.push({
                 key: 5,
                 name: "精装",
-                value:"精装"
+                value: "精装"
             });
             return dis;
         },
-        getHousingTime:function(e){
+        getHousingTime: function (e) {
             var dis = [];
             dis.push({key: 1, name: 1, value: 1});
             dis[dis.length - 1].subdis = [];
@@ -132,63 +132,63 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             subdis[subdis.length - 1].hs.push({
                 key: 1,
                 name: "无装修",
-                value:"无装修"
+                value: "无装修"
             });
             subdis[subdis.length - 1].hs.push({
                 key: 2,
                 name: "一年",
-                value:"一年"
+                value: "一年"
             });
             subdis[subdis.length - 1].hs.push({
                 key: 3,
                 name: "二年",
-                value:"二年"
+                value: "二年"
             });
             subdis[subdis.length - 1].hs.push({
                 key: 4,
                 name: "三年",
-                value:"三年"
+                value: "三年"
             });
             subdis[subdis.length - 1].hs.push({
                 key: 5,
                 name: "四年",
-                value:"四年"
+                value: "四年"
             });
             subdis[subdis.length - 1].hs.push({
                 key: 6,
                 name: "五年及以上",
-                value:"五年及以上"
+                value: "五年及以上"
             });
             return dis;
         },
-        getFaceto:function(e){
+        getFaceto: function (e) {
             var dis = [],
-                directions="正东 正南 正西 正北 东南 东北 西南 西北".split(" ");
+                directions = "正东 正南 正西 正北 东南 东北 西南 西北".split(" ");
             dis.push({key: 1, name: 1, value: 1});
             dis[dis.length - 1].subdis = [];
             var subdis = dis[dis.length - 1].subdis;
             subdis.push({key: 1, name: 1, value: 1});
             subdis[subdis.length - 1].hs = [];
 
-            for(var i=0;i<directions.length;i++){
+            for (var i = 0; i < directions.length; i++) {
                 subdis[subdis.length - 1].hs.push({
                     key: i,
                     name: directions[i],
-                    value:directions[i]
+                    value: directions[i]
                 });
             }
             return dis;
         },
-        getDate:function(){
+        getDate: function () {
             var d1 = [];
             for (var i = 0; i < 5; i++) {
-                d1.push({key: (2015 + i),name:(2015 + i),value:(2015 + i)});
-                d1[d1.length-1].months = [];
-                var d2 = d1[d1.length-1].months;
+                d1.push({key: (2015 + i), name: (2015 + i), value: (2015 + i)});
+                d1[d1.length - 1].months = [];
+                var d2 = d1[d1.length - 1].months;
                 for (var j = 1; j < 13; j++) {
-                    d2.push({key: j,name:j,value:j});
-                    d2[d2.length-1].days = [];
-                    var d3 = d2[d2.length-1].days;
+                    d2.push({key: j, name: j, value: j});
+                    d2[d2.length - 1].days = [];
+                    var d3 = d2[d2.length - 1].days;
                     for (var k = 1; k < 32; k++) {
                         d3.push({key: k, name: k, value: k});
                     }
@@ -197,35 +197,35 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             return d1;
         },
 
-        showDistrictsScroller:function(e){
+        showDistrictsScroller: function (e) {
             self.districtsScroller.show();
         },
-        submitHouseInfo:function(e) {
+        submitHouseInfo: function (e) {
             //判断
-            if(!$.trim(self.$el.find("#title").val())){
+            if (!$.trim(self.$el.find("#title").val())) {
                 self.showMyToast("请填写标题", 1000);
                 return;
             }
-            if(!$.trim(self.$el.find("#address").val())){
+            if (!$.trim(self.$el.find("#address").val())) {
                 self.showMyToast("请填写地址", 1000);
                 return;
             }
-            if(!$.trim(self.$el.find("#area-show").val())){
+            if (!$.trim(self.$el.find("#area-show").val())) {
                 self.showMyToast("请选择区域", 1000);
                 return;
             }
 
-            var houseType=self.$el.find("#housetype-show").val();
+            var houseType = self.$el.find("#housetype-show").val();
             //传值
-            var alldata={};
-            alldata={
+            var alldata = {};
+            alldata = {
                 "realty[title]": self.$el.find("#title").val(),
                 "realty[quarter_title]": self.$el.find("#neighbourhood").val(),
                 "realty[address]": self.$el.find("#address").val(),
                 "realty[district_id]": self.$el.find("#area-show").data("id"),//区域ID
-                "realty[room]": houseType.substring(0,houseType.lastIndexOf("室")),//室
-                "realty[hall]": houseType.substring(2,houseType.lastIndexOf("厅")),//厅
-                "realty[wash]": houseType.substring(4,houseType.lastIndexOf("卫")),//卫
+                "realty[room]": houseType.substring(0, houseType.lastIndexOf("室")),//室
+                "realty[hall]": houseType.substring(2, houseType.lastIndexOf("厅")),//厅
+                "realty[wash]": houseType.substring(4, houseType.lastIndexOf("卫")),//卫
                 "realty[price]": self.$el.find("#rent").val(),
                 "realty[area]": self.$el.find("#square").val(),
                 "realty[floor]": self.$el.find("#layer").val(),
@@ -262,22 +262,22 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 "device[standalone]": self.$el.find("#label6")[0].checked ? 1 : 0,
             }
 
-            if(!self.isLogin()){
+            if (!self.isLogin()) {
                 self.showMyToast("请先登录", 1500);
                 return;
             }
             var user = self.getCurrentUser();
-            var realtyid=0;
+            var realtyid = 0;
             self.showLoading();
-            var url = Lizard.host + Lizard.apiUrl +"realties?auth_token="+user.authentication_token;
+            var url = Lizard.host + Lizard.apiUrl + "realties?auth_token=" + user.authentication_token;
             $.ajax({
                 url: url,
                 type: "POST",
-                data:alldata,
+                data: alldata,
                 success: function (data) {
                     self.hideLoading();
                     self.showMyToast("上传成功", 1500);
-                    realtyid=data.realty.id;
+                    realtyid = data.realty.id;
                     self.uphousepic(realtyid);
                 },
                 error: function (e) {
@@ -289,19 +289,51 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             });
 
 
-
-
-
         },
         afterIframeLoad: function () {
             var iDoc = self.iframeContent.contentDocument || self.iframeContent.document;
             self.hideLoading();
 
         },
+        getHouseInfo: function (cb) {
+            var url = Lizard.host + Lizard.apiUrl + "realties/" + self.hid;
+            $.ajax({
+                url: url,
+                type: "get",
+                success: function (data) {
+                    self.hideLoading();
+                    cb(data);
+
+                },
+                error: function (e) {
+                    self.hideLoading();
+                    self.showMyToast("网络错误", 1000);
+
+
+                }
+            });
+        },
         onCreate: function () {
             self = this;
         },
         onShow: function () {
+            self.hid = Lizard.P("id");
+            if (self.hid) {
+                self.user= this.getCurrentUser()
+                self.getHouseInfo(function (data) {
+                    self.$el.html(_.template(TplHouseUpload)({realties: data.realty}));
+                    self.hideLoading();
+                })
+            } else {
+                //var settings = _.templateSettings,
+                //    matcher = RegExp([
+                //        (settings.escape ).source,
+                //        (settings.interpolate).source,
+                //        (settings.evaluate).source
+                //    ].join('|') + '|$', 'g');
+                self.$el.html(_.template(TplHouseUpload)({realties:""}));
+            }
+
 
             !self.districtsScroller && self.getDistricts(function (districts) {
                 var dis = [];
@@ -311,7 +343,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 subdis.push({key: 1, name: 1, value: 1});
                 subdis[subdis.length - 1].districts = [];
 
-                for (var i = 0; i < districts.length-1; i++) {
+                for (var i = 0; i < districts.length - 1; i++) {
                     subdis[subdis.length - 1].districts.push({
                         key: districts[i].id,
                         name: districts[i].title,
@@ -337,7 +369,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                         e.reload(t.districts), e.setIndex(0)
                     }],
                     onOkAction: function (item) {
-                        self.$el.find("#area-show").val(item[2].name).data("id",item[2].key);
+                        self.$el.find("#area-show").val(item[2].name).data("id", item[2].key);
                         this.hide()
                     },
                     onCancelAction: function () {
@@ -350,6 +382,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 self.districtsScroller.$el.addClass("district");
 
             });
+
 
             var d2 = self.getHouseType(), MInitData = [d2, d2[0].halls, d2[0].halls[0].toilets], MInitIndex = [0, 0, 0];
             self.houseTypeScroller = self.houseTypeScroller || new UIGroupSelect({
@@ -383,7 +416,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             })
             //self.houseTypeScroller.$el.addClass("house-type");
             var h2 = self.getHousing(), HInitData = [h2, h2[0].subdis, h2[0].subdis[0].hs], HInitIndex = [0, 0, 0];
-            self.housingScroller=self.housingScroller||new UIGroupSelect({
+            self.housingScroller = self.housingScroller || new UIGroupSelect({
                 datamodel: {title: "装修", tips: ""},
                 needAnimat: !1,
                 data: HInitData,
@@ -414,7 +447,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             });
             self.housingScroller.$el.addClass("district");
             var ht2 = self.getHousingTime(), HTInitData = [ht2, ht2[0].subdis, ht2[0].subdis[0].hs], HTInitIndex = [0, 0, 0];
-            self.housingTimeScroller=self.housingTimeScroller||new UIGroupSelect({
+            self.housingTimeScroller = self.housingTimeScroller || new UIGroupSelect({
                 datamodel: {title: "装修年限", tips: ""},
                 needAnimat: !1,
                 data: HTInitData,
@@ -446,7 +479,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             self.housingTimeScroller.$el.addClass("district");
 
             var f2 = self.getFaceto(), FTInitData = [f2, f2[0].subdis, f2[0].subdis[0].hs], FTInitIndex = [0, 0, 0];
-            self.directionScroller=self.directionScroller||new UIGroupSelect({
+            self.directionScroller = self.directionScroller || new UIGroupSelect({
                 datamodel: {title: "朝向", tips: ""},
                 needAnimat: !1,
                 data: FTInitData,
@@ -497,7 +530,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                     e.reload(t.days), e.setIndex(0)
                 }],
                 onOkAction: function (item) {
-                    self.$el.find("#rentdeadline-show").val(item[0].key+"-"+item[1].key+"-"+item[2].key);
+                    self.$el.find("#rentdeadline-show").val(item[0].key + "-" + item[1].key + "-" + item[2].key);
                     this.hide()
                 },
                 onCancelAction: function () {
@@ -507,7 +540,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                     this.destroy()
                 }
             });
-            //self.iframeContent=1;
+            self.iframeContent = 1;
             if (!self.iframeContent) {
                 var iframe = document.createElement("iframe");
                 iframe.width = "100%";
@@ -538,11 +571,11 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
         },
 
         //房源图片上传
-        uphousepic:function(realtyid){
-            self.$el.find(".housepic").each(function(){
+        uphousepic: function (realtyid) {
+            self.$el.find(".housepic").each(function () {
                 self.showLoading();
                 var user = self.getCurrentUser();
-                var url = Lizard.host + Lizard.apiUrl +"media_resources?realty_id="+realtyid+"&auth_token="+user.authentication_token;
+                var url = Lizard.host + Lizard.apiUrl + "media_resources?realty_id=" + realtyid + "&auth_token=" + user.authentication_token;
                 $.ajax({
                     url: url,
                     type: "POST",
@@ -564,16 +597,16 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
         },
 
         //选择标签
-        choiceTag:function(){
+        choiceTag: function () {
             alert("0");
-            if($(this).attr("checked")==""){
+            if ($(this).attr("checked") == "") {
                 $(this).removeAttr("checked");
                 alert("1");
-            }else {
-                $(this).attr("checked","");
+            } else {
+                $(this).attr("checked", "");
                 alert("2");
             }
-        },
+        }
 
     })
     return View;
