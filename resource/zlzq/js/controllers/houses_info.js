@@ -8,7 +8,9 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","text!Tpl
             "click .back": "toMyhouse",
             "click .next": "toChange"
         },
-
+        toChange:function(e) {
+            Lizard.goTo("houses_upload.html?id=" + self.hid);
+        },
         toMyhouse: function () {
             Lizard.goTo("myhouses.html");
         },
@@ -18,7 +20,8 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","text!Tpl
                 self.showMyToast("未登录", 1500);
                 return;
             }
-            var url = Lizard.host + Lizard.apiUrl + "realties/" + Lizard.P("id");
+            self.hid= Lizard.P("id");
+            var url = Lizard.host + Lizard.apiUrl + "realties/" + self.hid;
             $.ajax({
                 url: url,
                 type: "get",
