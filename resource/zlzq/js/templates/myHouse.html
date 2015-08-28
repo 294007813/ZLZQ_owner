@@ -6,78 +6,33 @@
     <div class="house-list">
         <%_.each(realties, function(v,i){ %>
         <a href="#" class="house-info" data-id="<%=v.id%>">
+            <%if(v.avatar.url!=null){%>
+            <img src="<%=v.avatar.url%>" />
+            <%}else{%>
             <img src="./pic/show1.png" />
+            <%}%>
             <div class="info-block">
+                <%if(v.title!=null){%>
                 <p class="info-title"><%=v.title%></p>
-                <p class="info-data"><%=v.room%>室<%=v.hall%>厅<%=v.wash%>卫&nbsp;|&nbsp;<%=v.area%>m<sup>2</sup>&nbsp;|&nbsp;<%=v.floor%>/<%=v.total_height%>F</p>
+                <%}%>
+                <p class="info-data">
+                    <%if(v.room!=null){%>
+                    <%=v.room%>室<%=v.hall%>厅<%=v.wash%>卫&nbsp;
+                    <%}%>
+                    <%if(v.area!=null){%>
+                    |&nbsp;<%=v.area%>m<sup>2</sup>&nbsp;
+                    <%}%>
+                    <%if(v.floor!=null){%>
+                    |&nbsp;<%=v.floor%>/<%=v.total_height%>F
+                    <%}%>
+                </p>
+                <%if(v.price!=null){%>
                 <p class="info-price"><%=v.price%><span class="unit">元/月</span></p>
+                <%}%>
             </div>
         </a>
         <%})%>
-        <!--<a href="#" class="house-info">-->
-            <!--<img src="./pic/show1.png" />-->
-            <!--<div class="info-block">-->
-                <!--<p class="info-title">康桥二村</p>-->
-                <!--<p class="info-data">3室2厅2厨2卫&nbsp;|&nbsp;120m<sup>2</sup>&nbsp;|&nbsp;3/18F</p>-->
-                <!--<p class="info-price">6000<span class="unit">元/月</span></p>-->
-            <!--</div>-->
-        <!--</a>-->
-        <!--<a href="#" class="house-info">-->
-            <!--<img src="./pic/show1.png" />-->
-            <!--<div class="info-block">-->
-                <!--<p class="info-title">康桥二村</p>-->
-                <!--<p class="info-data">3室2厅2厨2卫&nbsp;|&nbsp;120m<sup>2</sup>&nbsp;|&nbsp;3/18F</p>-->
-                <!--<p class="info-price">6000<span class="unit">元/月</span></p>-->
-            <!--</div>-->
-        <!--</a>-->
-        <!--<a href="#" class="house-info">-->
-            <!--<img src="./pic/show1.png" />-->
-            <!--<div class="info-block">-->
-                <!--<p class="info-title">康桥二村</p>-->
-                <!--<p class="info-data">3室2厅2厨2卫&nbsp;|&nbsp;120m<sup>2</sup>&nbsp;|&nbsp;3/18F</p>-->
-                <!--<p class="info-price">6000<span class="unit">元/月</span></p>-->
-            <!--</div>-->
-        <!--</a>-->
-        <!--<a href="#" class="house-info">-->
-            <!--<img src="./pic/show1.png" />-->
-            <!--<div class="info-block">-->
-                <!--<p class="info-title">康桥二村</p>-->
-                <!--<p class="info-data">3室2厅2厨2卫&nbsp;|&nbsp;120m<sup>2</sup>&nbsp;|&nbsp;3/18F</p>-->
-                <!--<p class="info-price">6000<span class="unit">元/月</span></p>-->
-            <!--</div>-->
-        <!--</a>-->
-        <!--<a href="#" class="house-info">-->
-            <!--<img src="./pic/show1.png" />-->
-            <!--<div class="info-block">-->
-                <!--<p class="info-title">康桥二村</p>-->
-                <!--<p class="info-data">3室2厅2厨2卫&nbsp;|&nbsp;120m<sup>2</sup>&nbsp;|&nbsp;3/18F</p>-->
-                <!--<p class="info-price">6000<span class="unit">元/月</span></p>-->
-            <!--</div>-->
-        <!--</a>-->
-        <!--<a href="#" class="house-info">-->
-            <!--<img src="./pic/show1.png" />-->
-            <!--<div class="info-block">-->
-                <!--<p class="info-title">康桥二村</p>-->
-                <!--<p class="info-data">3室2厅2厨2卫&nbsp;|&nbsp;120m<sup>2</sup>&nbsp;|&nbsp;3/18F</p>-->
-                <!--<p class="info-price">6000<span class="unit">元/月</span></p>-->
-            <!--</div>-->
-        <!--</a>-->
-        <!--<a href="#" class="house-info">-->
-            <!--<img src="./pic/show1.png" />-->
-            <!--<div class="info-block">-->
-                <!--<p class="info-title">康桥二村</p>-->
-                <!--<p class="info-data">3室2厅2厨2卫&nbsp;|&nbsp;120m<sup>2</sup>&nbsp;|&nbsp;3/18F</p>-->
-                <!--<p class="info-price">6000<span class="unit">元/月</span></p>-->
-            <!--</div>-->
-        <!--</a>-->
-        <!--<a href="#" class="house-info">-->
-            <!--<img src="./pic/show1.png" />-->
-            <!--<div class="info-block">-->
-                <!--<p class="info-title">康桥二村</p>-->
-                <!--<p class="info-data">3室2厅2厨2卫&nbsp;|&nbsp;120m<sup>2</sup>&nbsp;|&nbsp;3/18F</p>-->
-                <!--<p class="info-price">6000<span class="unit">元/月</span></p>-->
-            <!--</div>-->
-        <!--</a>-->
+
     </div>
 </div>
 <ul class="tab1">
