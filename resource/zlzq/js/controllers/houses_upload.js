@@ -17,7 +17,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             "click #rentdeadline-select": "showDateScroller",
             "click #choose-box": "readFile",//选择相册
             "click #camera": "camera",//拍照,
-            "click .submitBtn": "submitHouseInfo",
+            "click .submitBtn": "submitHouseInfo"
             //"click .form-dl li":"choiceTag"
         },
         camera: function (e) {
@@ -354,6 +354,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 //        (settings.evaluate).source
                 //    ].join('|') + '|$', 'g');
                 self.$el.html(_.template(TplHouseUpload)({realties:""}));
+
             }
 
 
@@ -583,7 +584,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                         self.afterIframeLoad();
                     };
                 }
-                self.$el.append(iframe);
+                $("body").append(iframe);
                 self.iframeContent = iframe;
             } else {
                 this.hideLoading();
