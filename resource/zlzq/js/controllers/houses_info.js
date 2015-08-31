@@ -39,6 +39,26 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","text!Tpl
             });
         },
 
+        getDistricts: function (callback) {
+            $.ajax({
+                url: Lizard.host + Lizard.apiUrl + 'districts',
+                dataType: "json",
+                contentType: "application/json",
+                type: "get",
+                success: function (data) {
+                    callback && callback(data.districts);
+                }
+            });
+        },
+
+        showDistricts: function(dist){
+            for(i=0;i<dist.length;i++){
+                if(dist[i].id==$("#area").text()){
+                    alert(dist[i].title)
+                }
+            }
+        },
+
         gitPic: function(data){
             var pic=[];
             pic=data.realty.media;
@@ -58,9 +78,15 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","text!Tpl
 
                 self.$el.html(_.template(TplHouseInfo)({realties: data.realty}));
                 self.hideLoading();
-                //alert("1");
                 self.gitPic(data);
-                //alert("2");
+                self.getDistricts(function(data){
+                    for(i=0;i<data.length;i++){
+                        if(data[i].id==$("#area").text()){
+                            $("#area").text(data[i].title);
+                        }
+                    }
+                });
+
             })
         },
 

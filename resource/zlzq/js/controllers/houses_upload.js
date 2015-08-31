@@ -222,7 +222,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 "realty[title]": self.$el.find("#title").val(),
                 "realty[quarter_title]": self.$el.find("#neighbourhood").val(),
                 "realty[address]": self.$el.find("#address").val(),
-                "realty[district_id]": self.$el.find("#area-show").data("id"),//区域ID
+                "realty[district_id]": self.hid?1:self.$el.find("#area-show").data("id"),//区域ID
                 "realty[room]": houseType.substring(0, houseType.lastIndexOf("室")),//室
                 "realty[hall]": houseType.substring(2, houseType.lastIndexOf("厅")),//厅
                 "realty[wash]": houseType.substring(4, houseType.lastIndexOf("卫")),//卫
@@ -346,6 +346,13 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                     $(".submitBtn").attr("value","修改房源");
                     self.gitPic(data);
                     self.hideLoading();
+                    self.getDistricts(function(data){
+                        for(i=0;i<data.length;i++){
+                            if(data[i].id==$("#area-show").val()){
+                                $("#area-show").attr("value",data[i].title);
+                            }
+                        }
+                    });
                 })
             } else {
                 //var settings = _.templateSettings,
@@ -640,7 +647,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             }
         },
 
-        
+
 
     })
     return View;
