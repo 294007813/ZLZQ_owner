@@ -27,14 +27,14 @@
         <dl class="form-dl">
             <dt>标题</dt>
             <dd>
-                <textarea id="title" placeholder="请填写标题(30字以内)" ><%=realties.title%></textarea>
+                <input id="title" placeholder="请填写标题(30字以内)" value="<%=realties.title%>">
             </dd>
         </dl>
 
         <ul class="form-list">
             <li>
                 <label for="neighbourhood">小区名称</label>
-                <input type="text" class="form-input" id="neighbourhood" placeholder="请填写小区名称" value="<%=realties.title%>" />
+                <input type="text" class="form-input" id="neighbourhood" placeholder="请填写小区名称" value="<%=realties.quarter_title%>" />
             </li>
             <li>
                 <label for="address">详细地址</label>
@@ -47,17 +47,17 @@
             </li>
             <li>
                 <label for="square">面积</label>
-                <input type="number" class="form-input" id="square" />
+                <input type="number" class="form-input" id="square" value="<%=realties.area%>"/>
                 <div class="unit">m<sup>2</sup></div>
             </li>
             <li>
                 <label for="layer">楼层</label>
-                <input type="number" class="form-input" id="layer"  />
+                <input type="number" class="form-input" id="layer"  value="<%=realties.floor%>"/>
                 <div class="unit">F</div>
             </li>
             <li>
                 <label for="layerall">楼层总高</label>
-                <input type="number" class="form-input" id="layerall" />
+                <input type="number" class="form-input" id="layerall" value="<%=realties.total_height%>"/>
                 <div class="unit">F</div>
             </li>
         </ul>
@@ -70,25 +70,25 @@
             </li>
             <li class="form-select" id="housetype-select">
                 <label>户型</label>
-                <input type="text" class="form-input" id="housetype-show" readonly="" value="" />
+                <input type="text" class="form-input" id="housetype-show" readonly="" value="<%=realties.room%>室<%=realties.hall%>厅<%=realties.wash%>卫" />
                 <span>></span>
                 <input type="hidden" id="housetype" />
             </li>
             <li class="form-select" id="housing-select">
                 <label>装修</label>
-                <input type="text" class="form-input" id="housing-show" readonly="" value="" />
+                <input type="text" class="form-input" id="housing-show" readonly="" value="<%=realties.decoration_type%>" />
                 <span>></span>
                 <input type="hidden" id="housing" />
             </li>
             <li class="form-select" id="faceto-select">
                 <label>朝向</label>
-                <input type="text" class="form-input" id="faceto-show" readonly="" value="" />
+                <input type="text" class="form-input" id="faceto-show" readonly="" value="<%=realties.direction%>" />
                 <span>></span>
                 <input type="hidden" id="faceto" />
             </li>
             <li class="form-select" id="housingtime-select">
                 <label>装修年限</label>
-                <input type="text" class="form-input" id="housingtime-show" readonly="" value="" />
+                <input type="text" class="form-input" id="housingtime-show" readonly="" value="<%=realties.decoration_years%>" />
                 <span>></span>
                 <input type="hidden" id="housingtime" />
             </li>
@@ -96,7 +96,7 @@
         <ul class="form-list">
             <li class="form-select" id="rentdeadline-select">
                 <label>租赁到期</label>
-                <input type="text" class="form-input" id="rentdeadline-show" readonly="" value="" />
+                <input type="text" class="form-input" id="rentdeadline-show" readonly="" value="<%=realties.end_at%>" />
                 <span>></span>
                 <input type="hidden" id="rentdeadline" />
             </li>
@@ -120,7 +120,7 @@
                         </label>
                     </li>
                     <li>
-                        <% if(device && device.chair){%>
+                        <% if(device && device.teapoy){%>
                            <input type="checkbox" name="furniture" class="hide" id="furniture-2"  checked="checked"/>
                         <%}else{%>
                            <input type="checkbox" name="furniture" class="hide" id="furniture-2" />
@@ -132,7 +132,7 @@
                         </label>
                     </li>
                     <li>
-                        <% if(device && device.chair){%>
+                        <% if(device && device.sofa){%>
                            <input type="checkbox" name="furniture" class="hide" id="furniture-3"  checked="checked"/>
                         <%}else{%>
                           <input type="checkbox" name="furniture" class="hide" id="furniture-3" />
@@ -144,7 +144,7 @@
                         </label>
                     </li>
                     <li>
-                        <% if(device && device.chair){%>
+                        <% if(device && device.bed){%>
                              <input type="checkbox" name="furniture" class="hide" id="furniture-4" checked="checked" />
                         <%}else{%>
                             <input type="checkbox" name="furniture" class="hide" id="furniture-4"  />
@@ -156,7 +156,7 @@
                         </label>
                     </li>
                     <li>
-                        <% if(device && device.chair){%>
+                        <% if(device && device.chest){%>
                              <input type="checkbox" name="furniture" class="hide" id="furniture-5" checked="checked"/>
                         <%}else{%>
                               <input type="checkbox" name="furniture" class="hide" id="furniture-5" />
@@ -168,7 +168,7 @@
                         </label>
                     </li>
                     <li>
-                        <% if(device && device.chair){%>
+                        <% if(device && device.table){%>
                              <input type="checkbox" name="furniture" class="hide" id="furniture-6" checked="checked"/>
                         <%}else{%>
                              <input type="checkbox" name="furniture" class="hide" id="furniture-6" />
@@ -180,7 +180,7 @@
                         </label>
                     </li>
                     <li>
-                        <% if(device && device.chair){%>
+                        <% if(device && device.tv_stand){%>
                                 <input type="checkbox" name="furniture" class="hide" id="furniture-7" checked="checked" />
                         <%}else{%>
                                  <input type="checkbox" name="furniture" class="hide" id="furniture-7" />
@@ -192,7 +192,7 @@
                         </label>
                     </li>
                     <li>
-                        <% if(device && device.chair){%>
+                        <% if(device && device.bookcase){%>
                              <input type="checkbox" name="furniture" class="hide" id="furniture-8" checked="checked"/>
                         <%}else{%>
                               <input type="checkbox" name="furniture" class="hide" id="furniture-8" />
@@ -211,7 +211,7 @@
             <dd>
                 <ul class="icon-radiolist">
                     <li>
-                        <% if(device && device.chair){%>
+                        <% if(device && device.tv){%>
                             <input type="checkbox" name="electronic" class="hide" id="electronic-1" checked="checked" />
                         <%}else{%>
                              <input type="checkbox" name="electronic" class="hide" id="electronic-1" />
@@ -223,7 +223,7 @@
                         </label>
                     </li>
                     <li>
-                        <% if(device && device.chair){%>
+                        <% if(device && device.water_heater){%>
                             <input type="checkbox" name="electronic" class="hide" id="electronic-2"  checked="checked"/>
                         <%}else{%>
                            <input type="checkbox" name="electronic" class="hide" id="electronic-2" />
@@ -235,7 +235,7 @@
                         </label>
                     </li>
                     <li>
-                        <% if(device && device.chair){%>
+                        <% if(device && device.refrigerator){%>
                           <input type="checkbox" name="electronic" class="hide" id="electronic-3" checked="checked" />
                         <%}else{%>
                           <input type="checkbox" name="electronic" class="hide" id="electronic-3"/>
@@ -247,7 +247,7 @@
                         </label>
                     </li>
                     <li>
-                        <% if(device && device.chair){%>
+                        <% if(device && device.air_condition){%>
                              <input type="checkbox" name="electronic" class="hide" id="electronic-4" checked="checked"/>
                         <%}else{%>
                              <input type="checkbox" name="electronic" class="hide" id="electronic-4" />
@@ -259,7 +259,7 @@
                         </label>
                     </li>
                     <li>
-                        <% if(device && device.chair){%>
+                        <% if(device && device.hearth){%>
                              <input type="checkbox" name="electronic" class="hide" id="electronic-5" checked="checked" />
                         <%}else{%>
                               <input type="checkbox" name="electronic" class="hide" id="electronic-5" />
@@ -271,7 +271,7 @@
                         </label>
                     </li>
                     <li>
-                        <% if(device && device.chair){%>
+                        <% if(device && device.washer){%>
                             <input type="checkbox" name="electronic" class="hide" id="electronic-6" checked="checked" />
                         <%}else{%>
                               <input type="checkbox" name="electronic" class="hide" id="electronic-6" />
@@ -283,7 +283,7 @@
                         </label>
                     </li>
                     <li>
-                        <% if(device && device.chair){%>
+                        <% if(device && device.fan){%>
                             <input type="checkbox" name="electronic" class="hide" id="electronic-7" checked="true" />
                         <%}else{%>
                              <input type="checkbox" name="electronic" class="hide" id="electronic-7" />
@@ -295,7 +295,7 @@
                         </label>
                     </li>
                     <li>
-                        <% if(device && device.chair){%>
+                        <% if(device && device.pc){%>
                              <input type="checkbox" name="electronic" class="hide" id="electronic-8" checked="checked" />
                         <%}else{%>
                              <input type="checkbox" name="electronic" class="hide" id="electronic-8" />
@@ -328,27 +328,51 @@
             <dd>
                 <ul class="label-list">
                     <li>
+                        <% if(device && device.chair){%>
+                        <input type="checkbox" name="label" class="hide" id="label1" checked="checked">
+                        <%}else{%>
                         <input type="checkbox" name="label" class="hide" id="label1">
+                        <%}%>
                         <label for="label1">交通方便</label>
                     </li>
                     <li>
+                        <% if(device && device.chair){%>
+                        <input type="checkbox" name="label" class="hide" id="label2" checked="checked">
+                        <%}else{%>
                         <input type="checkbox" name="label" class="hide" id="label2">
+                        <%}%>
                         <label for="label2">带花园</label>
                     </li>
                     <li>
+                        <% if(device && device.chair){%>
+                        <input type="checkbox" name="label" class="hide" id="label3" checked="checked">
+                        <%}else{%>
                         <input type="checkbox" name="label" class="hide" id="label3">
+                        <%}%>
                         <label for="label3">地铁</label>
                     </li>
                     <li>
+                        <% if(device && device.chair){%>
+                        <input type="checkbox" name="label" class="hide" id="label4" checked="checked">
+                        <%}else{%>
                         <input type="checkbox" name="label" class="hide" id="label4">
+                        <%}%>
                         <label for="label4">电梯</label>
                     </li>
                     <li>
+                        <% if(device && device.chair){%>
+                        <input type="checkbox" name="label" class="hide" id="label5" checked="checked">
+                        <%}else{%>
                         <input type="checkbox" name="label" class="hide" id="label5">
+                        <%}%>
                         <label for="label5">别墅</label>
                     </li>
                     <li>
+                        <% if(device && device.chair){%>
+                        <input type="checkbox" name="label" class="hide" id="label6" checked="checked">
+                        <%}else{%>
                         <input type="checkbox" name="label" class="hide" id="label6">
+                        <%}%>
                         <label for="label6">唯一住房</label>
                     </li>
                 </ul>

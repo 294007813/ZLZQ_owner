@@ -17,7 +17,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             "click #rentdeadline-select": "showDateScroller",
             "click #choose-box": "readFile",//选择相册
             "click #camera": "camera",//拍照,
-            "click .submitBtn": "submitHouseInfo"
+            "click .submitBtn": "submitHouseInfo",
             //"click .form-dl li":"choiceTag"
         },
         camera: function (e) {
@@ -344,6 +344,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 self.getHouseInfo(function (data) {
                     self.$el.html(_.template(TplHouseUpload)({realties: data.realty}));
                     $(".submitBtn").attr("value","修改房源");
+                    self.gitPic(data);
                     self.hideLoading();
                 })
             } else {
@@ -593,6 +594,16 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
 
         },
 
+        gitPic: function(data){
+            var pic=[];
+            pic=data.realty.media;
+            //alert("length:"+pic.length);
+            for(i=0;i<data.realty.media.length;i++){
+                $(".pic-block").append('<label class="pic-label icon"><img src="'+pic[i].avatar+'"/></label>');
+                //alert("src:"+pic[i].avatar);
+            }
+        },
+
         //房源图片上传
         uphousepic: function (realtyid) {
             self.$el.find(".housepic").each(function () {
@@ -617,6 +628,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                     }
                 })
             })
+
             Lizard.goTo("myhouses.html");
         },
 
