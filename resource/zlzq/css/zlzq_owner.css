@@ -5,7 +5,8 @@ a{text-decoration: none;}
 img{border: none;}
 li{list-style-type: none;}
 body{overflow-x:hidden;overflow-y:auto;}
-.hide{display: none;}
+/*.hide{display: none;}*/
+.hide{position:absolute}
 
 /*--allpages--*/
 .nav{
