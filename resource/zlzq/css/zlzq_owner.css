@@ -251,7 +251,8 @@ body.lock{
 	height: 54px;
 	line-height: 18px;
 	font-size:14px;
-	color: #A9AAAC;
+	/*color: #A9AAAC;*/
+	color: #4e4e4e;
 	border: none;
 	outline: none;
 }
