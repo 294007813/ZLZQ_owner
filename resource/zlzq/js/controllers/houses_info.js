@@ -77,15 +77,17 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","text!Tpl
             self.getHouseInfo(function (data) {
 
                 self.$el.html(_.template(TplHouseInfo)({realties: data.realty}));
-                self.hideLoading();
+
                 self.gitPic(data);
                 self.getDistricts(function(data){
                     for(i=0;i<data.length;i++){
                         if(data[i].id==$("#area").text()){
+                            //alert(data[i].title)
                             $("#area").text(data[i].title);
                         }
                     }
                 });
+                self.hideLoading();
 
             })
         },

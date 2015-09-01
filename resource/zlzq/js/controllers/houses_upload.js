@@ -222,7 +222,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 "realty[title]": self.$el.find("#title").val(),
                 "realty[quarter_title]": self.$el.find("#neighbourhood").val(),
                 "realty[address]": self.$el.find("#address").val(),
-                "realty[district_id]": self.hid?1:self.$el.find("#area-show").data("id"),//区域ID
+                "realty[district_id]": (self.hid&&self.changeid)?self.distid:self.$el.find("#area-show").data("id"),//区域ID
                 "realty[room]": houseType.substring(0, houseType.lastIndexOf("室")),//室
                 "realty[hall]": houseType.substring(2, houseType.lastIndexOf("厅")),//厅
                 "realty[wash]": houseType.substring(4, houseType.lastIndexOf("卫")),//卫
@@ -350,6 +350,9 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                         for(i=0;i<data.length;i++){
                             if(data[i].id==$("#area-show").val()){
                                 $("#area-show").attr("value",data[i].title);
+                                self.distid=data[i].id;
+                                self.changeid=1;
+                                //alert(self.hid?self.distid:self.$el.find("#area-show").data("id"))
                             }
                         }
                     });
@@ -401,6 +404,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                     }],
                     onOkAction: function (item) {
                         self.$el.find("#area-show").val(item[2].name).data("id", item[2].key);
+                        self.changeid=0;
                         this.hide()
                     },
                     onCancelAction: function () {
