@@ -6,8 +6,8 @@
     <div class="house-list">
         <%_.each(realties, function(v,i){ %>
         <a href="#" class="house-info" data-id="<%=v.id%>">
-            <%if(v.avatar.url!=null){%>
-            <img src="<%=v.avatar.url%>" />
+            <%if(v.avatar!=null){%>
+            <img src="<%=v.avatar%>" />
             <%}else{%>
             <img src="./pic/show1.png" />
             <%}%>
