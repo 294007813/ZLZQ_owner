@@ -1,8 +1,8 @@
  define('cImageZoom',function(){
   $.fn.fancyzoom = function(userOptions) {
         var oOverlay = $('<div>').css({
-            height: '100%',
-            width: '100%',
+            height: '150%',
+            width: '150%',
             position: 'fixed',
             zIndex: 100,
             left: 0,
@@ -18,8 +18,8 @@
                 if ($.browser.msie && $.browser.version < 7) {
                     oOverlay.css({
                         position: 'absolute',
-                        height: $(document).height(),
-                        width: $(document).width()
+                        height: $(document).height()*2,
+                        width: $(document).width()*2
                     })
                 }
             }
@@ -28,8 +28,8 @@
             o = $.extend(o, {
                 imgSrc: imgSrc,
                 dimOri: {
-                    width: imgSrc.width(),
-                    height: imgSrc.height(),
+                    width: imgSrc.width()*2,
+                    height: imgSrc.height()*2,
                     left: pos.left,
                     top: pos.top,
                     'opacity': 1
@@ -76,7 +76,7 @@
                 })
             }
             var oImgDisplay = $('img:first-child', oImgZoomBox).css({
-                'width': '100%',
+                'width': '150%',
                 'height': 'auto'
             });
             if (o.Speed > 0) {
@@ -99,8 +99,8 @@
                 var pos = oImgZoomBox.offset();
                 var iPercent = 0.15;
                 var oDimPlus = {
-                    width: (oImgZoomBox.width() * (1 + iPercent)),
-                    height: (oImgZoomBox.height() * (1 + iPercent)),
+                    width: (oImgZoomBox.width() * (1 + iPercent))*2,
+                    height: (oImgZoomBox.height() * (1 + iPercent))*2,
                     left: (pos.left - (oImgZoomBox.width() * (iPercent / 2))),
                     top: (pos.top - (oImgZoomBox.height() * (iPercent / 2)))
                 };
@@ -148,14 +148,14 @@
                 },
                 oImgClose: oImgClose
             });
-            if (imgTarget.is('img')) {
-                var oImgHover = $("<img src='" + opts.imgDir + "zoom.png'>").css({
-                    position: 'absolute',
-                    top: 0,
-                    left: 0
-                });
-                
-            }
+            //if (imgTarget.is('img')) {
+            //    var oImgHover = $("<img src='" + opts.imgDir + "zoom.png'>").css({
+            //        position: 'absolute',
+            //        top: 0,
+            //        left: 0
+            //    });
+            //
+            //}
             if ($this.is('img')) {
                 imgTargetSrc = $this.css('cursor', 'pointer').attr('src');
                 if (opts.imgResizeScript) {
@@ -208,7 +208,7 @@
                         'opacity': o.overlay
                     })
                 }
-                oImgClose.attr('src', o.imgDir + 'closebox.png').appendTo('body').hide();
+                //oImgClose.attr('src', o.imgDir + 'closebox.png').appendTo('body').hide();
                 if ($.fn.ifixpng) {
                     $.ifixpng(o.imgDir + 'blank.gif');
                     oImgClose.ifixpng(o.imgDir + 'blank.gif')
@@ -343,15 +343,15 @@
     ;
     $.fn.fancyzoom.defaultsOptions = {
         overlayColor: '#000',
-        overlay: 0.6,
+        overlay: 1,
         imagezindex: 100,
         showoverlay: true,
-        Speed: 400,
+        Speed: 0,
         shadow: true,
         shadowOpts: {
             color: "#000",
             offset: 4,
-            opacity: 0.2
+            opacity: 1
         },
         imgDir: 'ressources/',
         imgResizeScript: null ,
@@ -377,7 +377,7 @@
                 height: 50,
                 position: 'absolute',
                 'background': 'transparent',
-                opacity: 8 / 10,
+                opacity: 8/ 10,
                 color: '#FFF',
                 padding: '5px',
                 'font-size': '10px'
@@ -390,7 +390,7 @@
         timerLoadingImg = setTimeout(function() {
             __changeimageLoading(o)
         }
-        , 400)
+        , 10)
     }
     function __cancelLoading() {
         bCancelLoading = true;
@@ -422,7 +422,7 @@
         var $fct = function() {
             oLoading && oLoading.css(__posCenter(50, 50));
             $im.attr('src', strImgSrc);
-            timerLoadingImg = setTimeout(__changeimageLoading, 100)
+            timerLoadingImg = setTimeout(__changeimageLoading, 10)
         }
         ;
         if (pLoad.complete) {
