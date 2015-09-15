@@ -135,16 +135,19 @@ body{overflow-x:hidden;overflow-y:auto;}
 	width: 100%;
 	overflow: hidden;
 	z-index: 1;
+	height: 415px;
 }
 .slide-block .slide-img{
 	position: relative;
 	width:800%;
 	z-index: 1;
+	height: 420px;
 }
 .slide-block .slide-img img{
 	display: block;
 	float: left;
 	width: 12.5%;
+	height: 420px;
 }
 .slide-block .slide-point{
 	position: absolute;

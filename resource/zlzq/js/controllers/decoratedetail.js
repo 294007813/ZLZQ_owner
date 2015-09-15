@@ -90,7 +90,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","text!Tpl
                 body.width(width-40+'px');
                 body.height('auto');
             }
-			$.fn.fancyzoom.defaultsOptions.imgDir='resource/zlzq/images/';
+			//$.fn.fancyzoom.defaultsOptions.imgDir='resource/zlzq/images/';
 			$('img').fancyzoom();
         },
 
