@@ -16,14 +16,48 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","UIGroupS
             "click .icon-home":"toRent",
             "click .bottom-bar .mine":"toMine",
             "click .bottom-bar .order":"toOrderList",
-            //"click .bottom-bar .schedule":"toSchedule"
+            "click .ver":"askUpdte",
+            "click .cd-popup":"toCancel",
+            "click .cd-no":"toCancel",
+            "click #yes-update":"toUpdate",
+            "click .exit": "askExit",
+            "click #yes-exit":"Exit"
         },
-        //toMyFavorites:function(e){
-        //    Lizard.goTo("list.html?favorite=1");
-        //},
-        //toOrder:function(e){
-        //    Lizard.goTo("order.html");
-        //},
+        toCancel: function(){
+            self.$el.find(".cd-popup").removeClass("is-visible");
+        },
+
+        askExit:function(){
+            self.$el.find("#ask-exit").addClass("is-visible");
+        },
+
+        Exit: function () {
+            if (!self.iframeContent) {
+                var iframe = document.createElement("iframe");
+                iframe.width = "100%";
+                iframe.height ="0";
+                iframe.src = "./exit.html";
+                iframe.frameBorder = "0";
+                iframe.frameBorder = "no";
+                iframe.scrolling = "no";
+                iframe.border = "0";
+                if (navigator.userAgent.indexOf("MSIE") > -1 && !window.opera) {
+                    iframe.onreadystatechange = function() {
+                        if (iframe.readyState == "complete") {
+                            self.afterIframeLoad();
+                        }
+                    };
+                } else {
+                    iframe.onload = function() {
+                        self.afterIframeLoad();
+                    };
+                }
+                self.$el.append(iframe);
+                self.iframeContent = iframe;
+            }else{
+                self.hideLoading();
+            }
+        },
 
         toOrderList:function(){
             Lizard.goTo("orderlist.html");
