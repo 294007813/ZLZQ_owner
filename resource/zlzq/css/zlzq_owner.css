@@ -528,6 +528,7 @@ dd.pic-input{
 .pic-label{
 	float: left;
 	margin-right: 10px;
+	margin-bottom: 10px;
 	width: 100px;
 	height: 100px;
 	background: url(../img/imgbg.png) no-repeat center;
@@ -803,4 +804,12 @@ dd.pic-input{
 	 left: 0;
 	 opacity: 0;
 
+ }
+
+ .delico{
+	 position: absolute;
+	 width: 20px;
+	 height: 20px;
+	 background: url(../img/alldelete.png) no-repeat center;
+	 background-size: 20px 20px;
  }

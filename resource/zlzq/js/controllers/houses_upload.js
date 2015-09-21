@@ -9,7 +9,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             "click .icon-home": "toLocation",
             "click #housetype-select": "showHouseType",
             "click #housing-show": "showHousing",
-            "click .pic-label.choose": "showPicType",
+            "click .choose": "showPicType",
             "click  .pic-box .cancel,.pic-box .pmask": "hidePicType",
             "click #area-select": "showDistrictsScroller",
             "click #housingtime-show": "showHousingTimeScroller",
@@ -22,14 +22,14 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
         },
         camera: function (e) {
             self.iframeContent.contentWindow.getPictureFromCamera(function (data) {
-                $(".pic-block").prepend('<label class="pic-label icon" > <img class="housepic" src="data:image/jpeg;base64,' + data + '"/> </label>');
+                $(".pic-block").prepend('<label class="pic-label icon" ><label class="delico new" ></label> <img class="housepic" src="data:image/jpeg;base64,' + data + '"/> </label>');
                 self.hidePicType();
             })
         },
         //点击选择相册
         readFile: function (e) {
             self.iframeContent.contentWindow.getPictureFromPhoto(function (data) {
-                $(".pic-block").prepend('<label class="pic-label icon" > <img class="housepic" src="data:image/jpeg;base64,' + data + '"/> </label>');
+                $(".pic-block").prepend('<label class="pic-label icon" ><label class="delico new" ></label> <img class="housepic" src="data:image/jpeg;base64,' + data + '"/> </label>');
                 self.hidePicType();
             })
 
@@ -365,9 +365,9 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 //        (settings.evaluate).source
                 //    ].join('|') + '|$', 'g');
                 self.$el.html(_.template(TplHouseUpload)({realties:""}));
+                //self.addDelico();
 
             }
-
 
             !self.districtsScroller && self.getDistricts(function (districts) {
                 var dis = [];
@@ -605,12 +605,20 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
 
         },
 
+        //添加删除按钮
+        addDelico: function(){
+            //self.$el.find(".pic-label:not(.choose)").prepend("<label class='delico'>111111</label>");
+            //$(".pic-label").prepend("<label class='delico' ></label>");
+
+        },
+
+        //显示已传图片
         gitPic: function(data){
             var pic=[];
             pic=data.realty.media;
             //alert("length:"+pic.length);
             for(i=0;i<data.realty.media.length;i++){
-                $(".pic-block").append('<label class="pic-label icon"><img src="'+pic[i].avatar+'"/></label>');
+                $(".pic-block").append('<label class="pic-label icon"><label class="delico saved" ></label><img src="'+pic[i].avatar+'"/></label>');
                 //alert("src:"+pic[i].avatar);
             }
         },
