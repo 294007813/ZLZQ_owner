@@ -310,7 +310,7 @@
             </dd>
         </dl>
         <dl class="form-dl">
-            <dt>上传照片</dt>
+            <dt>上传照片<span class="delete" style="float: right;color: #FF7300">删除</span></dt>
             <dd class="pic-input">
                 <div class="pic-block">
                     <label class="pic-label icon choose">
@@ -390,6 +390,34 @@
             <li id="camera">拍照</li>
             <li id="choose-box">从相册中选择</li>
             <li class="cancel">取消</li>
+        </ul>
+    </div>
+</div>
+
+<div class="cd-popup" id="ask-del" role="alert">
+    <div class="cd-popup-container">
+        <p style="">您要删除这张图片吗?</p>
+        <ul class="cd-buttons">
+            <li id="yes-del">
+                <a href="#0">删除</a>
+            </li>
+            <li class="cd-no">
+                <a href="#0">取消</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="cd-popup" id="ask-exit" role="alert">
+    <div class="cd-popup-container">
+        <p style="">您的修改未保存,确定退出吗?</p>
+        <ul class="cd-buttons">
+            <li id="yes-exit">
+                <a href="#0">退出</a>
+            </li>
+            <li class="cd-no">
+                <a href="#0">取消</a>
+            </li>
         </ul>
     </div>
 </div>

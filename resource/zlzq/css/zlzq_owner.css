@@ -808,8 +808,12 @@ dd.pic-input{
 
  .delico{
 	 position: absolute;
-	 width: 20px;
-	 height: 20px;
+	 width: 25px;
+	 height: 25px;
 	 background: url(../img/alldelete.png) no-repeat center;
-	 background-size: 20px 20px;
+	 background-size: 25px 25px;
+	 display: none;
+ }
+ .delshow{
+	 display: inline;
  }

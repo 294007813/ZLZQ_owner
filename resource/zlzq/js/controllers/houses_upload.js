@@ -18,7 +18,49 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             "click #choose-box": "readFile",//选择相册
             "click #camera": "camera",//拍照,
             "click .submitBtn": "submitHouseInfo",
+            "click .cd-popup,.cd-no":"toCancel",
+            //"click .delico.new": "delpicNew",
+            "click .delete": "delpicNew",
+            //"click .delico.saved": "delpicSaved",
 
+        },
+        delpicNew:function(){
+            if($(".delico").hasClass("delshow")){
+                $(".delico").removeClass("delshow");
+                $(".delete").text("删除")
+            }else{
+                $(".delico").addClass("delshow");
+                $(".delete").text("取消")
+                $(".delico.new").bind("click",function(){
+                    var delnew=$(this);
+                    //$("#ask-del").addClass("is-visible");
+                    //if($("#yes-del").click()){
+                        delnew.parent().remove();
+                    self.showMyToast("删除成功", 1000);
+                    //}
+                })
+                $(".delico.saved").bind("click",function(){
+                    var savethis=$(this).next("img");
+                    self.delpicSaved(savethis);
+                    //$(this).parent().remove();
+                })
+            }
+        },
+        delpicSaved:function(savethis){
+            var picid=savethis.attr("picid");
+            var user = self.getCurrentUser();
+            var url =Lizard.host + Lizard.apiUrl + "media_resources/"+picid+"?auth_token="+user.authentication_token;
+            $.ajax({
+                url: url,
+                type: "delete",
+                success: function (data) {
+                    self.showMyToast("删除成功", 1000);
+                    savethis.parent().remove();
+                },
+                error: function (e) {
+                    self.showMyToast("网络错误", 1000);
+                }
+            });
         },
         camera: function (e) {
             self.iframeContent.contentWindow.getPictureFromCamera(function (data) {
@@ -32,8 +74,9 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 $(".pic-block").prepend('<label class="pic-label icon" ><label class="delico new" ></label> <img class="housepic" src="data:image/jpeg;base64,' + data + '"/> </label>');
                 self.hidePicType();
             })
-
-
+        },
+        toCancel: function(){
+            self.$el.find(".cd-popup").removeClass("is-visible");
         },
         hidePicType: function (e) {
             self.$el.find(".pic-box").removeClass("slideIn");
@@ -368,7 +411,8 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 //self.addDelico();
 
             }
-
+            //self.delpicNew();
+            //$(".delico").hidden();
             !self.districtsScroller && self.getDistricts(function (districts) {
                 var dis = [];
                 dis.push({key: 1, name: 1, value: 1});
@@ -605,20 +649,13 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
 
         },
 
-        //添加删除按钮
-        addDelico: function(){
-            //self.$el.find(".pic-label:not(.choose)").prepend("<label class='delico'>111111</label>");
-            //$(".pic-label").prepend("<label class='delico' ></label>");
-
-        },
-
         //显示已传图片
         gitPic: function(data){
             var pic=[];
             pic=data.realty.media;
             //alert("length:"+pic.length);
             for(i=0;i<data.realty.media.length;i++){
-                $(".pic-block").append('<label class="pic-label icon"><label class="delico saved" ></label><img src="'+pic[i].avatar+'"/></label>');
+                $(".pic-block").append('<label class="pic-label icon"><label class="delico saved" ></label><img src="'+pic[i].avatar+'" picid="'+pic[i].medium_id+'"/></label>');
                 //alert("src:"+pic[i].avatar);
             }
         },
