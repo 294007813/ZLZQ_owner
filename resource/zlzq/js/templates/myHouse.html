@@ -4,6 +4,7 @@
 </div>
 <div class="container">
     <div class="house-list">
+        <%if(realties!=""){%>
         <%_.each(realties, function(v,i){ %>
         <a href="#" class="house-info" data-id="<%=v.id%>">
             <%if(v.avatar!=null){%>
@@ -32,7 +33,9 @@
             </div>
         </a>
         <%})%>
-
+        <%}else{%>
+        <p style="text-align:center;margin-left:auto; margin-right:auto;color: #ff6c10;">您还未发布房源</p>
+        <%}%>
     </div>
 </div>
 <ul class="tab1">

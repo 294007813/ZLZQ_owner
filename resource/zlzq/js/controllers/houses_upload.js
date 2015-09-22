@@ -5,8 +5,8 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
         ViewName: 'houses_upload',
         events: {
             "click .back": "toBack",
-            "click .icon-person": "toPersonal",
-            "click .icon-home": "toLocation",
+            "click .icon-person": "asktoPersonal",
+            "click .icon-home": "asktoLocation",
             "click #housetype-select": "showHouseType",
             "click #housing-show": "showHousing",
             "click .choose": "showPicType",
@@ -19,9 +19,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             "click #camera": "camera",//拍照,
             "click .submitBtn": "submitHouseInfo",
             "click .cd-popup,.cd-no":"toCancel",
-            //"click .delico.new": "delpicNew",
             "click .delete": "delpicNew",
-            //"click .delico.saved": "delpicSaved",
 
         },
         delpicNew:function(){
@@ -33,11 +31,8 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 $(".delete").text("取消")
                 $(".delico.new").bind("click",function(){
                     var delnew=$(this);
-                    //$("#ask-del").addClass("is-visible");
-                    //if($("#yes-del").click()){
                         delnew.parent().remove();
                     self.showMyToast("删除成功", 1000);
-                    //}
                 })
                 $(".delico.saved").bind("click",function(){
                     var savethis=$(this).next("img");
@@ -689,14 +684,29 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
         },
 
         toBack:function(){
-            if (self.hid) {
-                Lizard.goTo("houses_info.html?id=" + self.hid);
-            }else{
-                Lizard.goTo("newindex.html");
-            }
+            self.$el.find("#ask-exit").addClass("is-visible");
+            $("#yes-exit").click(function(){
+                if (self.hid) {
+                    Lizard.goTo("houses_info.html?id=" + self.hid);
+                }else{
+                    Lizard.goTo("newindex.html");
+                }
+            })
         },
 
+        asktoPersonal:function(){
+            self.$el.find("#ask-exit").addClass("is-visible");
+            $("#yes-exit").click(function(){
+                window.location.href="user.html";
+            })
+        },
 
+        asktoLocation:function(){
+            self.$el.find("#ask-exit").addClass("is-visible");
+            $("#yes-exit").click(function(){
+                Lizard.goTo("newindex.html");
+            })
+        },
 
     })
     return View;
