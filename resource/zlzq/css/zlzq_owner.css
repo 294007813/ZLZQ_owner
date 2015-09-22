@@ -40,6 +40,15 @@ body{overflow-x:hidden;overflow-y:auto;}
 	line-height: 40px;
 	text-align: center;
 }
+.nav .del{
+	/*right: 2px;*/
+	right: 40px;
+	width: 60px;
+	color: #fff;
+	line-height: 40px;
+	text-align: center;
+	/*border-right: 1px solid #fff;*/
+}
 .nav h1{
 	padding:0 62px;
 	line-height: 40px;

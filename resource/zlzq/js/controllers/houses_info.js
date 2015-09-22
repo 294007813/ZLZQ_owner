@@ -6,13 +6,38 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","text!Tpl
             "click .icon-person": "toPersonal",
             "click .icon-home": "toLocation",
             "click .back": "toMyhouse",
-            "click .next": "toChange"
+            "click .next": "toChange",
+            "click .del": "askDel",
+            "click .cd-popup":"toCancel",
+            "click .cd-no":"toCancel",
+            "click #yes-del":"delHouse",
         },
         toChange:function(e) {
             Lizard.goTo("houses_upload.html?id=" + self.hid);
         },
         toMyhouse: function () {
             Lizard.goTo("myhouses.html");
+        },
+        toCancel: function(){
+            self.$el.find(".cd-popup").removeClass("is-visible");
+        },
+        askDel:function(){
+            self.$el.find("#ask-del").addClass("is-visible");
+        },
+        delHouse:function(){
+            var user = self.getCurrentUser();
+            var url = Lizard.host + Lizard.apiUrl + "realties/" + Lizard.P("id")+"?auth_token="+user.authentication_token;;
+            $.ajax({
+                url: url,
+                type: "delete",
+                success: function (data) {
+                    self.showMyToast("删除成功", 1000);
+                    Lizard.goTo("myhouses.html");
+                },
+                error: function (e) {
+                    self.showMyToast("网络错误", 1000);
+                }
+            });
         },
         getHouseInfo: function (cb) {
             if (!self.user) {

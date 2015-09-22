@@ -1,6 +1,7 @@
 <div class="nav">
     <a class="back" href="#"></a>
     <h1>房源详情</h1>
+    <a class="del" href="#">删除 |</a>
     <a class="next" href="#">修改</a>
 </div>
 <div class="container greybg">
@@ -255,7 +256,23 @@
             </dd>
         </dl>
     </form>
+
+    <div class="cd-popup" id="ask-del" role="alert">
+        <div class="cd-popup-container">
+            <p>您要删除这个房源吗?</p>
+            <ul class="cd-buttons">
+                <li id="yes-del">
+                    <a href="#0">删除</a>
+                </li>
+                <li class="cd-no">
+                    <a href="#0">取消</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
 </div>
+
 <ul class="tab1">
     <li>
         <i class="icon icon-home"></i>
