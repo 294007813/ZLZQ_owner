@@ -25,29 +25,29 @@
 <div class="container greybg">
     <form>
         <dl class="form-dl">
-            <dt>标题</dt>
+            <dt><em style="color: #FF6C10">*</em>标题</dt>
             <dd>
-                <input id="title" placeholder="请填写标题(30字以内)" value="<%=realties.title%>">
+                <input id="title" placeholder="请填写标题(必填,30字以内)" value="<%=realties.title%>">
             </dd>
         </dl>
 
         <ul class="form-list">
             <li>
                 <label for="neighbourhood">小区名称</label>
-                <input type="text" class="form-input" id="neighbourhood" placeholder="请填写小区名称" value="<%=realties.quarter_title%>" />
+                <input type="text" class="form-input" id="neighbourhood" value="<%=realties.quarter_title%>" />
             </li>
             <li>
-                <label for="address">详细地址</label>
-                <input type="text" class="form-input" id="address"  value="<%=realties.address%>"/>
+                <label for="address"><em style="color: #FF6C10">*</em>详细地址</label>
+                <input type="text" placeholder="请详细填写,对外显示时会隐藏具体地址" class="form-input" id="address"  value="<%=realties.address%>"/>
             </li>
             <li>
-                <label for="rent">租金</label>
-                <input type="number" class="form-input" id="rent" value="<%=realties.price%>" />
+                <label for="rent"><em style="color: #FF6C10">*</em>租金</label>
+                <input type="number" placeholder="(必填)" class="form-input" id="rent" value="<%=realties.price%>" />
                 <div class="unit">元/月</div>
             </li>
             <li>
-                <label for="square">面积</label>
-                <input type="number" class="form-input" id="square" value="<%=realties.area%>"/>
+                <label for="square"><em style="color: #FF6C10">*</em>面积</label>
+                <input type="number" placeholder="(必填)" class="form-input" id="square" value="<%=realties.area%>"/>
                 <div class="unit">m<sup>2</sup></div>
             </li>
             <li>
@@ -63,8 +63,8 @@
         </ul>
         <ul class="form-list">
             <li class="form-select" id="area-select">
-                <label>区域</label>
-                <input type="text" class="form-input" id="area-show" readonly="" value="<%=realties.district_id%>" />
+                <label><em style="color: #FF6C10">*</em>区域</label>
+                <input type="text" placeholder="(必填)" class="form-input" id="area-show" readonly="" value="<%=realties.district_id%>" />
                 <span>></span>
                 <input type="hidden" id="area" />
             </li>
@@ -95,8 +95,8 @@
         </ul>
         <ul class="form-list">
             <li class="form-select" id="rentdeadline-select">
-                <label>租赁到期</label>
-                <input type="text" class="form-input" id="rentdeadline-show" readonly="" value="<%=realties.end_at%>" />
+                <label><em style="color: #FF6C10">*</em>租赁到期</label>
+                <input type="text" placeholder="(必填)请填写到期时间" class="form-input" id="rentdeadline-show" readonly="" value="<%=realties.end_at%>" />
                 <span>></span>
                 <input type="hidden" id="rentdeadline" />
             </li>
@@ -399,10 +399,10 @@
 
     <div class="cd-popup" id="ask-exit" role="alert">
         <div class="cd-popup-container">
-            <p style="">您的房源未保存,确定退出吗?</p>
+            <p style="">您的房源未保存,确定离开吗?</p>
             <ul class="cd-buttons">
                 <li id="yes-exit">
-                    <a href="#0">退出</a>
+                    <a href="#0">离开</a>
                 </li>
                 <li class="cd-no">
                     <a href="#0">取消</a>

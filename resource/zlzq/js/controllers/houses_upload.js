@@ -252,6 +252,18 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
                 self.showMyToast("请选择区域", 1000);
                 return;
             }
+            if (!$.trim(self.$el.find("#rent").val())) {
+                self.showMyToast("请填写租金", 1000);
+                return;
+            }
+            if (!$.trim(self.$el.find("#square").val())) {
+                self.showMyToast("请填写面积", 1000);
+                return;
+            }
+            if (!$.trim(self.$el.find("#rentdeadline-show").val())) {
+                self.showMyToast("请选择租赁到期时间", 1000);
+                return;
+            }
 
             var houseType = self.$el.find("#housetype-show").val();
             //传值
