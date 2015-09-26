@@ -31,6 +31,68 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","UIGroupS
             self.$el.find("#ask-exit").addClass("is-visible");
         },
 
+        askUpdte: function(){
+            if(self.$el.find(".ver").hasClass("new")){
+                self.$el.find("#ask-update").addClass("is-visible");
+            }else self.showMyToast("已是最新版", 1000);
+
+        },
+
+        checkUpdate:function(){
+            var url=Lizard.host+Lizard.apiUrl+"versions/lastest?version_type=owner_android";
+            $.ajax({
+                url: url,
+                dataType: "json",
+                type: "get",
+                success: function (data) {
+                    if (data.error) {
+                        self.showMyToast(data.error.message, 1000);
+                        return
+                    }
+                    else{
+                        self.getver=data.number;
+                        self.appurl=data.url;
+                        if(self.getver!=Lizard.version){
+                            self.$el.find("#ver").append("<em style='color: #ff0000'>(有更新)</em>");
+                            self.$el.find(".ver").addClass("new");
+                        }
+                    }
+                },
+                error: function (e) {
+                    self.showMyToast("网络错误", 1000);
+                }
+            });
+        },
+
+        toUpdate:function(){
+            //self.showMyToast("正在下载更新程序", 1000);
+            //if (!self.iframeContent) {
+            var iframe = document.createElement("iframe");
+            iframe.width = "100%";
+            iframe.height ="0";
+            iframe.src = "./update.html";
+            iframe.frameBorder = "0";
+            iframe.frameBorder = "no";
+            iframe.scrolling = "no";
+            iframe.border = "0";
+            if (navigator.userAgent.indexOf("MSIE") > -1 && !window.opera) {
+                iframe.onreadystatechange = function() {
+                    if (iframe.readyState == "complete") {
+                        self.afterIframeLoad();
+                    }
+                };
+            } else {
+                iframe.onload = function() {
+                    self.afterIframeLoad();
+                };
+            }
+            self.$el.append(iframe);
+            self.iframeContent = iframe;
+            //}else{
+            //    self.hideLoading();
+            //}
+        },
+
         Exit: function () {
             if (!self.iframeContent) {
                 var iframe = document.createElement("iframe");
@@ -99,10 +161,12 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","UIGroupS
         onShow: function () {
 
             $("#headerview").hide();
-            self.$el.html(_.template(tplUser)({user: this.getCurrentUser()}));
+            self.checkUpdate();
+            self.$el.html(_.template(tplUser)({user: this.getCurrentUser(),ver:Lizard.version}));
+
+
 
             self.hideLoading();
-
         },
         //设置标题
         setHeader: function () {
