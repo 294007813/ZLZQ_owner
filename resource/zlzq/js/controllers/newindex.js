@@ -64,8 +64,14 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store",], functi
             });
             self.houseSlider.show();
 
-            self.$(".slide-block img").css("height","415px");
-            //self.$(".slide-img img").css("display","block").css("float","left").css("width","12.5%");
+
+            var height=$(window).height();
+            ////alert(height);
+            if(height<615){
+                self.$(".slide-block img").css("height","350px");
+            }else{
+                self.$(".slide-block img").css("height","415px");
+            }
 
             self.hideLoading();
         }
