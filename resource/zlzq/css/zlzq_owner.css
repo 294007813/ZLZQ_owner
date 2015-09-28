@@ -597,11 +597,13 @@ dd.pic-input{
 /*--myhouses--*/
 .house-list{
 	padding:0 15px 20px 15px;
+
 }
 .house-list .house-info{
 	display: flex;
 	padding: 18px 0;
 	border-bottom: 1px solid #F1F1F1;
+	display: block;
 }
 .house-list .house-info img{
 	width: 105px;
@@ -609,8 +611,10 @@ dd.pic-input{
 	border-radius: 4px;
 }
 .house-list .house-info .info-block{
+	float: right;
 	padding-left: 10px;
 	flex:1;
+	width: auto;
 }
 .house-list .house-info .info-block .info-title{
 	font-size: 16px;
@@ -620,6 +624,7 @@ dd.pic-input{
 	overflow: hidden;
 	text-overflow:ellipsis;
 	color: #232736;
+	width: auto
 }
 .house-list .house-info .info-block .info-data{
 	margin: 2px 0;
@@ -628,6 +633,7 @@ dd.pic-input{
 	font-size: 12px;
 	overflow: hidden;
 	color: #737478;
+	width: auto
 }
 .house-list .house-info .info-block .info-price{
 	vertical-align: bottom;
@@ -638,6 +644,7 @@ dd.pic-input{
 	overflow: hidden;
 	text-overflow:ellipsis;
 	color: #FF6C10;
+	width: auto
 }
 .house-list .house-info .info-block .info-price .unit{
 	padding-left: 3px;
