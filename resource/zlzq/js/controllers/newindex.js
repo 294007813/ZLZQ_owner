@@ -68,8 +68,10 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store",], functi
             var height=$(window).height();
             ////alert(height);
             if(height<615){
+                self.$(".slide-block ").css("height","350px");
                 self.$(".slide-block img").css("height","350px");
             }else{
+                self.$(".slide-block ").css("height","415px");
                 self.$(".slide-block img").css("height","415px");
             }
 

@@ -699,8 +699,10 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             self.$el.find("#ask-exit").addClass("is-visible");
             $("#yes-exit").click(function(){
                 if (self.hid) {
+                    self.showLoading();
                     Lizard.goTo("houses_info.html?id=" + self.hid);
                 }else{
+                    self.showLoading();
                     Lizard.goTo("newindex.html");
                 }
             })
@@ -709,6 +711,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
         asktoPersonal:function(){
             self.$el.find("#ask-exit").addClass("is-visible");
             $("#yes-exit").click(function(){
+                self.showLoading();
                 window.location.href="user.html";
             })
         },
@@ -716,6 +719,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
         asktoLocation:function(){
             self.$el.find("#ask-exit").addClass("is-visible");
             $("#yes-exit").click(function(){
+                self.showLoading();
                 Lizard.goTo("newindex.html");
             })
         },

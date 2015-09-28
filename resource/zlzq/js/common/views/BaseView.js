@@ -67,6 +67,7 @@ define(['cPageView', 'cGuider', 'cUtility','Store','Model', 'UIAlert'], function
 			Lizard.goTo("list.html");
 		},
 		toLocation:function(){
+			this.showLoading();
 			Lizard.goTo("newindex.html");
 		},
 	    showLoading:function(){

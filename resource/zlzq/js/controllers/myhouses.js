@@ -33,8 +33,9 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","text!Tpl
         },
         toHousesInfo: function (e) {
             var target = $(e.currentTarget),
-                id = target.data("id");
+            id = target.data("id");
             //console.log(id);
+            self.showLoading();
             Lizard.goTo("houses_info.html?id=" + id);
         },
         onCreate: function () {
