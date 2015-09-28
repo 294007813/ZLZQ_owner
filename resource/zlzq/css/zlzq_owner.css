@@ -255,7 +255,8 @@ body.lock{
 .form-list li label{
 	display: block;
 	float: left;
-	width: 70px;
+	/*width: 70px;*/
+	width: auto;
 }
 .form-list li .form-input{
 	flex:1;
@@ -267,6 +268,7 @@ body.lock{
 	color: #4e4e4e;
 	border: none;
 	outline: none;
+	width: auto;
 }
 .form-list .form-select .form-input{
 	text-align: right;
@@ -281,8 +283,9 @@ body.lock{
 }
 .form-list li .unit{
 	float: right;
-	width: 40px;
+	/*width: 40px;*/
 	text-align: right;
+	width: auto;
 }
 .form-list .form-select{
 	display: flex;
