@@ -1,8 +1,8 @@
- define('cImageZoom',function(){
-  $.fn.fancyzoom = function(userOptions) {
+define('cImageZoom',function(){
+    $.fn.fancyzoom = function(userOptions) {
         var oOverlay = $('<div>').css({
-            height: '300%',
-            width: '300%',
+            height: '100%',
+            width: '100%',
             position: 'fixed',
             zIndex: 100,
             left: 0,
@@ -12,14 +12,15 @@
         function openZoomBox(imgSrc, o) {
             if (o.showoverlay) {
                 oOverlay.appendTo('body').click(function() {
-                    closeZoomBox(o)
-                }
+                        imgSrc.show();
+                        closeZoomBox(o)
+                    }
                 );
                 if ($.browser.msie && $.browser.version < 7) {
                     oOverlay.css({
                         position: 'absolute',
-                        height: $(document).height()*3,
-                        width: $(document).width()*3
+                        height: $(document).height(),
+                        width: $(document).width()
                     })
                 }
             }
@@ -28,8 +29,8 @@
             o = $.extend(o, {
                 imgSrc: imgSrc,
                 dimOri: {
-                    width: imgSrc.width()*3,
-                    height: imgSrc.height()*3,
+                    width: imgSrc.width(),
+                    height: imgSrc.height(),
                     left: pos.left,
                     top: pos.top,
                     'opacity': 1
@@ -57,18 +58,52 @@
                 top: (dimBoxTarget.top - 15)
             });
             var $fctEnd = function() {
-                if ($.fn.shadow && o.shadow && !$.browser.msie) {
-                    $('img:first-child', oImgZoomBox).shadow(o.shadowOpts)
+                    if ($.fn.shadow && o.shadow && !$.browser.msie) {
+                        $('img:first-child', oImgZoomBox).shadow(o.shadowOpts)
+                    }
+                    if (o.Speed > 0 && !$.browser.msie) {
+                        o.oImgClose.animate({ opacity: "show"},'slow' , function(){o.oImgClose.show()});
+                        $('div', oImgZoomBox).animate({ opacity: "show"},'slow' , function(){});
+                    } else {
+                        o.oImgClose.show();
+                        $('div', oImgZoomBox).show()
+                    }
+
+                    var iframe = document.createElement("iframe");
+
+                    iframe.id="panzoom";
+                    iframe.width = "100%";
+                    iframe.height ="100%";
+                    iframe.src = "./panzoom.html";
+                    iframe.frameBorder = "0";
+                    iframe.frameBorder = "no";
+                    iframe.scrolling = "no";
+                    iframe.border = "0";
+                    iframe.style.position="fixed";
+                    iframe.style.top="0px";
+                    iframe.style.zIndex="1022";
+                    $("#headerview").css("zIndex","101");
+
+                    $("body").append(iframe);
+
+                    iframe.onload = function() {
+                        imgSrc.hide();
+                        iframe.contentWindow.panzoom(oOverlay,oImgZoomBox,imgSrc[0].src,function(){
+                            var panzoom = $("#panzoom");
+                            if (!panzoom.length) {
+                                closeZoomBox(o)
+                                return
+                            };
+                            panzoom[0].parentNode.removeChild(panzoom[0]);
+                            closeZoomBox(o);
+                            imgSrc.show();
+
+                        });
+
+                    };
+
                 }
-                if (o.Speed > 0 && !$.browser.msie) {
-                    o.oImgClose.animate({ opacity: "show"},'slow' , function(){o.oImgClose.show()});
-                    $('div', oImgZoomBox).animate({ opacity: "show"},'slow' , function(){});
-                } else {
-                    o.oImgClose.show();
-                    $('div', oImgZoomBox).show()
-                }
-            }
-            ;
+                ;
             $('div', oImgZoomBox).hide();
             if (o.imgSrc.is('img')) {
                 o.imgSrc.css({
@@ -76,7 +111,7 @@
                 })
             }
             var oImgDisplay = $('img:first-child', oImgZoomBox).css({
-                'width': '300%',
+                'width': '100%',
                 'height': 'auto'
             });
             if (o.Speed > 0) {
@@ -91,10 +126,10 @@
             o.oImgClose.remove();
             $('div', oImgZoomBox).remove();
             var endClose = function() {
-                oImgZoomBox.empty().remove();
-                o.imgSrc.css('opacity', 1)
-            }
-            ;
+                    oImgZoomBox.empty().remove();
+                    o.imgSrc.css('opacity', 1)
+                }
+                ;
             if (o.Speed > 0) {
                 var pos = oImgZoomBox.offset();
                 var iPercent = 0.15;
@@ -105,19 +140,19 @@
                     top: (pos.top - (oImgZoomBox.height() * (iPercent / 2)))
                 };
                 oImgZoomBox.animate(oDimPlus, o.Speed * 0.2, function() {
-                    oImgZoomBox.animate(o.dimOri, o.Speed, function() {
-                        endClose()
-                    }
-                    );
-                    if (o.showoverlay) {
-                        oOverlay.animate({
-                            'opacity': 0
-                        }, o.Speed, function() {
-                            $(this).remove()
+                        oImgZoomBox.animate(o.dimOri, o.Speed, function() {
+                                endClose()
+                            }
+                        );
+                        if (o.showoverlay) {
+                            oOverlay.animate({
+                                    'opacity': 0
+                                }, o.Speed, function() {
+                                    $(this).remove()
+                                }
+                            )
                         }
-                        )
                     }
-                }
                 )
             } else {
                 endClose();
@@ -127,220 +162,219 @@
             }
         }
         return this.each(function() {
-            var $this = $(this);
-            var imgTarget = $this.is('img') ? $this : ($('img:eq(0)', $this).length == 0) ? $this : $('img:first', $this);
-            var imgTargetSrc = null ;
-            if ($this.attr('href')) {
-                imgTargetSrc = $this.attr('href')
-            }
-            var oImgClose = $('<img class="jqfancyzoomclosebox">').css({
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                cursor: 'pointer'
-            });
-            var opts = $.extend({}, $.fn.fancyzoom.defaultsOptions, userOptions || {}, {
-                dimOri: {},
-                oImgZoomBoxProp: {
+                var $this = $(this);
+                var imgTarget = $this.is('img') ? $this : ($('img:eq(0)', $this).length == 0) ? $this : $('img:first', $this);
+                var imgTargetSrc = null ;
+                if ($this.attr('href')) {
+                    imgTargetSrc = $this.attr('href')
+                }
+                var oImgClose = $('<img class="jqfancyzoomclosebox">').css({
                     position: 'absolute',
+                    top: 0,
                     left: 0,
-                    top: 0
-                },
-                oImgClose: oImgClose
-            });
-            //if (imgTarget.is('img')) {
-            //    var oImgHover = $("<img src='" + opts.imgDir + "zoom.png'>").css({
-            //        position: 'absolute',
-            //        top: 0,
-            //        left: 0
-            //    });
-            //
-            //}
-            if ($this.is('img')) {
-                imgTargetSrc = $this.css('cursor', 'pointer').attr('src');
-                if (opts.imgResizeScript) {
-                    if (imgTargetSrc.match(new RegExp("^" + opts.imgResizeScript,"g"))) {
-                        imgTargetSrc = imgTargetSrc.replace(/.*img=([^&]*).*/gi, '$1')
-                    }
-                }
-            }
-            oOverlay.css({
-                opacity: opts.overlay,
-                background: opts.overlayColor
-            });
-            if (!/\.jpg|\.jpeg|\.png|\.gif/i.test(imgTargetSrc)) {
-                return true
-            }
-            $this.click(function() {
-                var zoomOpened = $('div.jqfancyzoombox');
-                if (zoomOpened.length > 0) {
-                    if ($('img:first-child', zoomOpened).attr('src') != imgTargetSrc) {
-                        if (oLoading && oLoading.is(':visible')) {
-                            __cancelLoading()
-                        }
-                    } else {
-                        return false
-                    }
-                }
-                var o = $.extend({}, opts, userOptions);
-                var closeBtn = $("img.jqfancyzoomclosebox");
-                if (closeBtn.length > 0) {
-                    var imCurrent = $('img:first-child', zoomOpened);
-                    if (imgTargetSrc == imCurrent.attr('src')) {
-                        pos = imgTarget.offset();
-                        o = $.extend(o, {
-                            dimOri: {
-                                width: (imgTarget.width()),
-                                height: (imgTarget.height()),
-                                left: pos.left,
-                                top: (pos.top),
-                                'opacity': 0
-                            }
-                        });
-                        closeZoomBox(o);
-                        return false
-                    } else {
-                        closeBtn.trigger('click')
-                    }
-                }
-                if (o.showoverlay && oOverlay) {
-                    oOverlay.empty().remove().css({
-                        'opacity': o.overlay
-                    })
-                }
-                //oImgClose.attr('src', o.imgDir + 'closebox.png').appendTo('body').hide();
-                if ($.fn.ifixpng) {
-                    $.ifixpng(o.imgDir + 'blank.gif');
-                    oImgClose.ifixpng(o.imgDir + 'blank.gif')
-                }
-                oImgClose.unbind('click').click(function() {
-                    closeZoomBox(o)
-                }
-                );
-                var oImgZoomBox = $('<div class="jqfancyzoombox"></div>').css(o.oImgZoomBoxProp);
-                o = $.extend(o, {
-                    oImgZoomBox: oImgZoomBox
+                    cursor: 'pointer'
                 });
-                var strTitle = imgTarget.attr('alt');
-                if (strTitle) {
-                    var oTitle = $('<div><center><table height=0 border="0" cellspacing=0 cellpadding=0><tr><td></td><td class="fancyTitle">' + strTitle + '</td><td></td></table></center></div>').css({
-                        marginTop: 10,
-                        marginRight: 15
-                    });
-                    var tdL = oTitle.find('td:first').css({
-                        'background': 'url(' + o.imgDir + 'zoom-caption-l.png)',
-                        width: '13px',
-                        height: '26px'
-                    });
-                    var tdR = oTitle.find('td:last').css({
-                        'background': 'url(' + o.imgDir + 'zoom-caption-r.png)',
-                        width: '13px',
-                        height: '26px'
-                    });
-                    var tdC = $('.fancyTitle', oTitle).css({
-                        'background': 'url(' + o.imgDir + 'zoom-caption-fill.png)',
-                        'padding': '0px 20px',
-                        color: '#FFF',
-                        'font-size': '14px'
-                    });
-                    if ($.fn.ifixpng) {
-                        tdL.ifixpng(o.imgDir + 'blank.gif');
-                        tdR.ifixpng(o.imgDir + 'blank.gif');
-                        tdC.ifixpng(o.imgDir + 'blank.gif')
-                    }
-                    oTitle.appendTo(oImgZoomBox)
-                }
-                var oImgZoom = $('<img />').attr('src', imgTargetSrc).click(function() {
-                    closeZoomBox(o)
-                }
-                ).prependTo(oImgZoomBox);
-                var imagezindex = opts.imagezindex;
-                oOverlay.css('zIndex', imagezindex - 1);
-                oImgZoomBox.css('zIndex', imagezindex);
-                oImgClose.css('zIndex', (imagezindex + 10));
-                var imgPreload = new Image();
-                imgPreload.src = imgTargetSrc;
-                var $fctEndLoading = function() {
-                    if (bCancelLoading) {
-                        bCancelLoading = false
-                    } else {
-                        if (__getFileName(imgPreload.src) == __getFileName($('img:first', oImgZoomBox).attr('src'))) {
-                            fctCalculateImageSize(o.autoresize);
-                            openZoomBox(imgTarget, o);
-                            __stoploading()
+                var opts = $.extend({}, $.fn.fancyzoom.defaultsOptions, userOptions || {}, {
+                    dimOri: {},
+                    oImgZoomBoxProp: {
+                        position: 'absolute',
+                        left: 0,
+                        top: 0
+                    },
+                    oImgClose: oImgClose
+                });
+                //if (imgTarget.is('img')) {
+                //    var oImgHover = $("<img src='" + opts.imgDir + "zoom.png'>").css({
+                //        position: 'absolute',
+                //        top: 0,
+                //        left: 0
+                //    });
+                //
+                //}
+                if ($this.is('img')) {
+                    imgTargetSrc = $this.css('cursor', 'pointer').attr('src');
+                    if (opts.imgResizeScript) {
+                        if (imgTargetSrc.match(new RegExp("^" + opts.imgResizeScript,"g"))) {
+                            imgTargetSrc = imgTargetSrc.replace(/.*img=([^&]*).*/gi, '$1')
                         }
                     }
                 }
-                ;
-                var fctCalculateImageSize = function(autoresize) {
-                    if (autoresize) {
-                        var divCalculate = $('<div></div>').css({
-                            position: 'absolute',
-                            'top': 0,
-                            'left': 0,
-                            opacity: 0,
-                            'border': '0px solid red'
-                        });
-                        var bResize = false;
-                        oImgZoom.appendTo(divCalculate);
-                        divCalculate.appendTo('body');
-                        imWidth = oImgZoom.width();
-                        imHeight = oImgZoom.height();
-                        maxWidth = $(window).width() * 0.9;
-                        maxHeight = $(window).height() - 100;
-                        if (maxHeight < imHeight) {
-                            bResize = true;
-                            oImgZoom.height(maxHeight);
-                            imWidth = (imWidth * maxHeight) / imHeight;
-                            oImgZoom.width(imWidth);
-                            if (maxWidth < imWidth) {
-                                oImgZoom.width(maxWidth);
-                                oImgZoom.height(imHeight * maxWidth / imWidth)
+                oOverlay.css({
+                    opacity: opts.overlay,
+                    background: opts.overlayColor
+                });
+                if (!/\.jpg|\.jpeg|\.png|\.gif/i.test(imgTargetSrc)) {
+                    return true
+                }
+                $this.click(function() {
+                        var zoomOpened = $('div.jqfancyzoombox');
+                        if (zoomOpened.length > 0) {
+                            if ($('img:first-child', zoomOpened).attr('src') != imgTargetSrc) {
+                                if (oLoading && oLoading.is(':visible')) {
+                                    __cancelLoading()
+                                }
+                            } else {
+                                return false
                             }
-                        } else if (maxWidth < imWidth) {
-                            bResize = true;
-                            oImgZoom.width(maxWidth);
-                            oImgZoom.height(imHeight * maxWidth / imWidth)
                         }
-                        if (bResize && o.imgResizeScript) {
-                            var tWidth = oImgZoom.width();
-                            var tHeight = oImgZoom.height();
-                            var finalWidth = tWidth;
-                            var tabSizes = new Array(1440,1280,1024,800,640,480,360);
-                            for (i = 0; i < tabSizes.length; i++) {
-                                if (tWidth > tabSizes[i]) {
-                                    finalWidth = tabSizes[i];
-                                    break
+                        var o = $.extend({}, opts, userOptions);
+                        var closeBtn = $("img.jqfancyzoomclosebox");
+                        if (closeBtn.length > 0) {
+                            var imCurrent = $('img:first-child', zoomOpened);
+                            if (imgTargetSrc == imCurrent.attr('src')) {
+                                pos = imgTarget.offset();
+                                o = $.extend(o, {
+                                    dimOri: {
+                                        width: (imgTarget.width()),
+                                        height: (imgTarget.height()),
+                                        left: pos.left,
+                                        top: (pos.top),
+                                        'opacity': 0
+                                    }
+                                });
+                                closeZoomBox(o);
+                                return false
+                            } else {
+                                closeBtn.trigger('click')
+                            }
+                        }
+                        if (o.showoverlay && oOverlay) {
+                            oOverlay.empty().remove().css({
+                                'opacity': o.overlay
+                            })
+                        }
+                        //oImgClose.attr('src', o.imgDir + 'closebox.png').appendTo('body').hide();
+                        if ($.fn.ifixpng) {
+                            $.ifixpng(o.imgDir + 'blank.gif');
+                            oImgClose.ifixpng(o.imgDir + 'blank.gif')
+                        }
+                        oImgClose.unbind('click').click(function() {
+                                closeZoomBox(o)
+                            }
+                        );
+                        var oImgZoomBox = $('<div class="jqfancyzoombox"></div>').css(o.oImgZoomBoxProp);
+                        o = $.extend(o, {
+                            oImgZoomBox: oImgZoomBox
+                        });
+                        var strTitle = imgTarget.attr('alt');
+                        if (strTitle) {
+                            var oTitle = $('<div><center><table height=0 border="0" cellspacing=0 cellpadding=0><tr><td></td><td class="fancyTitle">' + strTitle + '</td><td></td></table></center></div>').css({
+                                marginTop: 10,
+                                marginRight: 15
+                            });
+                            var tdL = oTitle.find('td:first').css({
+                                'background': 'url(' + o.imgDir + 'zoom-caption-l.png)',
+                                width: '13px',
+                                height: '26px'
+                            });
+                            var tdR = oTitle.find('td:last').css({
+                                'background': 'url(' + o.imgDir + 'zoom-caption-r.png)',
+                                width: '13px',
+                                height: '26px'
+                            });
+                            var tdC = $('.fancyTitle', oTitle).css({
+                                'background': 'url(' + o.imgDir + 'zoom-caption-fill.png)',
+                                'padding': '0px 20px',
+                                color: '#FFF',
+                                'font-size': '14px'
+                            });
+                            if ($.fn.ifixpng) {
+                                tdL.ifixpng(o.imgDir + 'blank.gif');
+                                tdR.ifixpng(o.imgDir + 'blank.gif');
+                                tdC.ifixpng(o.imgDir + 'blank.gif')
+                            }
+                            oTitle.appendTo(oImgZoomBox)
+                        }
+                        var oImgZoom = $('<img />').attr('src', imgTargetSrc).click(function() {
+                                closeZoomBox(o)
+                            }
+                        ).prependTo(oImgZoomBox);
+                        var imagezindex = opts.imagezindex;
+                        oOverlay.css('zIndex', imagezindex - 1);
+                        oImgZoomBox.css('zIndex', imagezindex);
+                        oImgClose.css('zIndex', (imagezindex + 10));
+                        var imgPreload = new Image();
+                        imgPreload.src = imgTargetSrc;
+                        var $fctEndLoading = function() {
+                                if (bCancelLoading) {
+                                    bCancelLoading = false
+                                } else {
+                                    if (__getFileName(imgPreload.src) == __getFileName($('img:first', oImgZoomBox).attr('src'))) {
+                                        fctCalculateImageSize(o.autoresize);
+                                        openZoomBox(imgTarget, o);
+                                        __stoploading()
+                                    }
                                 }
                             }
-                            oImgZoom.width(finalWidth);
-                            oImgZoom.height(parseInt(tHeight * finalWidth / tWidth));
-                            var args = "img=" + encodeURI(oImgZoom.attr('src'));
-                            args += "&width=" + oImgZoom.width();
-                            args += "&height=" + oImgZoom.height();
-                            oImgZoom.attr('src', o.imgResizeScript + "?" + args)
+                            ;
+                        var fctCalculateImageSize = function(autoresize) {
+                                if (autoresize) {
+                                    var divCalculate = $('<div></div>').css({
+                                        position: 'absolute',
+                                        'top': 0,
+                                        'left': 0,
+                                        opacity: 0,
+                                        'border': '0px solid red'
+                                    });
+                                    var bResize = false;
+                                    oImgZoom.appendTo(divCalculate);
+                                    divCalculate.appendTo('body');
+                                    imWidth = oImgZoom.width();
+                                    imHeight = oImgZoom.height();
+                                    maxWidth = $(window).width() * 0.9;
+                                    maxHeight = $(window).height() - 100;
+                                    if (maxHeight < imHeight) {
+                                        bResize = true;
+                                        oImgZoom.height(maxHeight);
+                                        imWidth = (imWidth * maxHeight) / imHeight;
+                                        oImgZoom.width(imWidth);
+                                        if (maxWidth < imWidth) {
+                                            oImgZoom.width(maxWidth);
+                                            oImgZoom.height(imHeight * maxWidth / imWidth)
+                                        }
+                                    } else if (maxWidth < imWidth) {
+                                        bResize = true;
+                                        oImgZoom.width(maxWidth);
+                                        oImgZoom.height(imHeight * maxWidth / imWidth)
+                                    }
+                                    if (bResize && o.imgResizeScript) {
+                                        var tWidth = oImgZoom.width();
+                                        var tHeight = oImgZoom.height();
+                                        var finalWidth = tWidth;
+                                        var tabSizes = new Array(1440,1280,1024,800,640,480,360);
+                                        for (i = 0; i < tabSizes.length; i++) {
+                                            if (tWidth > tabSizes[i]) {
+                                                finalWidth = tabSizes[i];
+                                                break
+                                            }
+                                        }
+                                        oImgZoom.width(finalWidth);
+                                        oImgZoom.height(parseInt(tHeight * finalWidth / tWidth));
+                                        var args = "img=" + encodeURI(oImgZoom.attr('src'));
+                                        args += "&width=" + oImgZoom.width();
+                                        args += "&height=" + oImgZoom.height();
+                                        oImgZoom.attr('src', o.imgResizeScript + "?" + args)
+                                    }
+                                    divCalculate.remove()
+                                }
+                                oImgZoom.prependTo(oImgZoomBox)
+                            }
+                            ;
+                        if (imgPreload.complete) {
+                            fctCalculateImageSize(o.autoresize);
+                            openZoomBox(imgTarget, o)
+                        } else {
+                            __displayLoading(o);
+                            imgPreload.onload = function() {
+                                $fctEndLoading()
+                            }
                         }
-                        divCalculate.remove()
+                        return false
                     }
-                    oImgZoom.prependTo(oImgZoomBox)
-                }
-                ;
-                if (imgPreload.complete) {
-                    fctCalculateImageSize(o.autoresize);
-                    openZoomBox(imgTarget, o)
-                } else {
-                    __displayLoading(o);
-                    imgPreload.onload = function() {
-                        $fctEndLoading()
-                    }
-                }
-                return false
+                )
             }
-            )
-        }
         )
-    }
-    ;
+    };
     $.fn.fancyzoom.defaultsOptions = {
         overlayColor: '#000',
         overlay: 1,
@@ -384,13 +418,13 @@
             })
         }
         oLoading.css(__posCenter(50, 50)).html('<img src="' + o.imgDir + 'blank.gif" />').click(function() {
-            __cancelLoading()
-        }
+                __cancelLoading()
+            }
         ).appendTo('body').show();
         timerLoadingImg = setTimeout(function() {
-            __changeimageLoading(o)
-        }
-        , 10)
+                __changeimageLoading(o)
+            }
+            , 10)
     }
     function __cancelLoading() {
         bCancelLoading = true;
@@ -400,7 +434,7 @@
         oLoading.hide().remove();
         if (timerLoadingImg) {
             clearTimeout(timerLoadingImg);
-            timerLoadingImg = null 
+            timerLoadingImg = null
         }
     }
     function __changeimageLoading(o) {
@@ -420,11 +454,11 @@
         var pLoad = new Image();
         pLoad.src = strImgSrc;
         var $fct = function() {
-            oLoading && oLoading.css(__posCenter(50, 50));
-            $im.attr('src', strImgSrc);
-            timerLoadingImg = setTimeout(__changeimageLoading, 10)
-        }
-        ;
+                oLoading && oLoading.css(__posCenter(50, 50));
+                $im.attr('src', strImgSrc);
+                timerLoadingImg = setTimeout(__changeimageLoading, 10)
+            }
+            ;
         if (pLoad.complete) {
             $fct()
         } else {
@@ -436,6 +470,6 @@
             return false
         }
         var tabPath = strPath.split('/');
-        return ( (tabPath.length < 1) ? strPath : tabPath[(tabPath.length - 1)]) 
+        return ( (tabPath.length < 1) ? strPath : tabPath[(tabPath.length - 1)])
     }
 })
