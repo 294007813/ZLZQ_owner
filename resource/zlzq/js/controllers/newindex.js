@@ -46,9 +46,9 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store",], functi
 
             pic = [
                 //{id: 1, src: './pic/slide1.png', href: './res/img/1.jpg'},
-                {id: 2, src: './pic/ownerindex1.jpg', href: './res/img/2.jpg'},
-                {id: 3, src: './pic/ownerindex2.jpg', href: './res/img/3.jpg'},
-                {id: 4, src: './pic/ownerindex3.jpg', href: './res/img/4.jpg'}
+                {id: 1, src: './pic/ownerindex1.jpg', },
+                {id: 2, src: './pic/ownerindex2.jpg', },
+                {id: 3, src: './pic/ownerindex3.jpg', }
             ];
 
             self.houseSlider = new cUIImageSlider({
@@ -70,9 +70,9 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store",], functi
             if(height<615){
                 self.$(".slide-block ").css("height","350px");
                 self.$(".slide-block img").css("height","350px");
-            }else{
-                self.$(".slide-block ").css("height","415px");
-                self.$(".slide-block img").css("height","415px");
+            //}else{
+            //    self.$(".slide-block ").css("height","415px");
+            //    self.$(".slide-block img").css("height","415px");
             }
 
             self.hideLoading();
