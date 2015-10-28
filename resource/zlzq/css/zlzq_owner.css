@@ -62,10 +62,11 @@ body{overflow-x:hidden;overflow-y:auto;}
 	text-overflow:ellipsis;
 }
 .container{
-	position: relative;
-	padding: 40px 0 51px 0;
-	width: 100%;
-	overflow: hidden;
+	margin-top: 40px;
+	/*position: relative;*/
+	/*padding: 40px 0 51px 0;*/
+	/*width: 100%;*/
+	/*overflow: hidden;*/
 	z-index: 1;
 }
 .tab1{

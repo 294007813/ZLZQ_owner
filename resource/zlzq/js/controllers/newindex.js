@@ -1,4 +1,4 @@
-define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store",], function (BaseView, cUIInputClear,cUIImageSlider, Model, Store) {
+define(['BaseView', "cUIInputClear","cUIImageSlider","text!TplNewIndex", "Model", "Store"], function (BaseView, cUIInputClear,cUIImageSlider,TplNewIndex,Model,Store) {
     var self;
     var View = BaseView.extend({
         ViewName: 'newindex',
@@ -42,13 +42,14 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store",], functi
         },
 
         onShow: function () {
-
+            self.hideLoading();
+            self.$el.html(TplNewIndex);
 
             pic = [
                 //{id: 1, src: './pic/slide1.png', href: './res/img/1.jpg'},
-                {id: 1, src: './pic/ownerindex1.jpg', },
-                {id: 2, src: './pic/ownerindex2.jpg', },
-                {id: 3, src: './pic/ownerindex3.jpg', }
+                {id: 1, src: './pic/ownerindex1.jpg' },
+                {id: 2, src: './pic/ownerindex2.jpg' },
+                {id: 3, src: './pic/ownerindex3.jpg' }
             ];
 
             self.houseSlider = new cUIImageSlider({
