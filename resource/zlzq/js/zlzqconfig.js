@@ -40,7 +40,9 @@
 			'TplNewsDetail':baseUrl + 'templates/newsdetail.html',
 			'TplHouseInfo':baseUrl + 'templates/houseInfo.html',
 			'TplMyHouse':baseUrl + 'templates/myHouse.html',
-			'TplHouseUpload':baseUrl + 'templates/houseUpload.html'
+			'TplHouseUpload':baseUrl + 'templates/houseUpload.html',
+			'TplGetreward': baseUrl + 'templates/getinvitereward.html',
+			'TplSendinvite': baseUrl + 'templates/sendinvitecode.html',
 	    }
 	};
 	config.urlArgs = "v=1";

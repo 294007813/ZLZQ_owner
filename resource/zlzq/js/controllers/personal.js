@@ -354,18 +354,49 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","UIGroupS
 
         },
 
+        GetData: function (e) {
+            this.showLoading();
+            var url=Lizard.host+Lizard.apiUrl+"users/"+self.getCurrentUser().id+"?auth_token="+self.getCurrentUser().token;
+            $.ajax({
+                url: url,
+                dataType: "json",
+                type: "get",
+                success: function (data) {
+                    self.hideLoading();
+                    if (data.error) {
+
+                        return
+                    }
+                    if(data){
+                        data.user.balance=data.balance;
+                        data.user.invited_code=data.invited_code;
+
+
+                    }
+                },
+                error: function (e) {
+                    self.hideLoading();
+                    self.showMyToast("网络错误", 1000);
+                }
+            });
+
+        },
+
         onCreate: function () {
             self = this;
             self.$el.html(tplPersonal);
         },
         onShow: function () {
+            self.GetData();
             self.setHeader();
             self.user=self.getCurrentUser();
             self.$el.html(_.template(tplPersonal)({
                 user: {
                     nick_name: self.user.nick_name,
                     cell: self.user.cell,
-                    avatar: self.user.avatar.avatar.url
+                    avatar: self.user.avatar.avatar.url,
+                    balance:self.user.balance,
+                    invite_code:self.user.invite_code,
                 }
             }));
             if (!self.iframeContent) {

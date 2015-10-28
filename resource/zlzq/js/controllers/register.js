@@ -108,6 +108,8 @@ define(['BaseView', "cUIInputClear", "Model", "Store", "text!TplRegister"], func
                     this.showMyToast("请输入验证码", 1000);
                     return;
                 }
+                var invitecode= (this.$el.find(".inputinvicode").val());
+                invitecode=invitecode?invitecode:'';
 
                 this.showLoading();
                 var url = Lizard.host+Lizard.apiUrl+"users";
@@ -115,20 +117,38 @@ define(['BaseView', "cUIInputClear", "Model", "Store", "text!TplRegister"], func
                     url: url,
                     dataType: "json",
                     type: "post",
-                    data: {cell: mobile, password: password, password_confirmation: confirmPassword, type: "owner",vcode:code},
+                    data: {cell: mobile, password: password, password_confirmation: confirmPassword, type: "owner",vcode:code,invited_code:invitecode},
                     success: function (data) {
                         self.hideLoading();
                         if (data.error) {
                             self.showMyToast(data.error.message, 1000);
                             return
                         }
-                        if (data.user) {
+                        //if (data.user) {
+                        //    data.user.token=data.user.authentication_token;
+                        //    self.setLoginStatus({isLogin: true, user: data.user,token:data.user.authentication_token});
+                        //    self.showMyToast("注册成功！", 3000);
+                        //    Lizard.goTo("login.html");
+                        //}
+                        if (data.user&&invitecode) {
                             data.user.token=data.user.authentication_token;
+                            data.user.incode=data.user.invite_code;
+                            data.user.applystate=data.user.state;
+                            data.user.pbalabce=data.user.balance;
                             self.setLoginStatus({isLogin: true, user: data.user,token:data.user.authentication_token});
-                            self.showMyToast("注册成功！", 3000);
+                            self.showMyToast("注册成功！获得注册积分30000并额外获得奖励积分15000！", 1000);
+
+
                             Lizard.goTo("login.html");
                         }
+                        else if (data.user&&!invitecode) {
+                            data.user.token=data.user.authentication_token
 
+                            self.setLoginStatus({isLogin: true, user: data.user,token:data.user.authentication_token});
+                            self.showMyToast("注册成功！获得注册积分30000！", 3000);
+
+                            Lizard.goTo("login.html");
+                        }
                     },
                     error: function (e) {
                         self.hideLoading();
