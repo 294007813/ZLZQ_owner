@@ -68,16 +68,15 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","text!Tpl
         },
 
         putDistricts: function (data1) {
+            var url =Lizard.host + Lizard.apiUrl + "districts";
             $.ajax({
-                url: Lizard.host + Lizard.apiUrl + 'districts',
+                url: url,
                 type: "get",
                 success: function (data) {
 
-                    for(i=0;i<data.length;i++){
-                        //alert("1:"+data[i].id);
-                        //alert("2:"+data1.realty.district_id);
-                        if(data[i].id==data1.realty.district_id){
-                            self.area=data[i].title;
+                    for(i=0;i<data.districts.length;i++){
+                        if(data.districts[i].id==data1.realty.district_id){
+                            self.area=data.districts[i].title;
                             break;
                         }
                     }
@@ -89,7 +88,6 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","text!Tpl
         gitPic: function(data){
             var pic=[];
             pic=data.realty.media;
-            //alert("length:"+pic.length);
             for(i=0;i<data.realty.media.length;i++){
                 $(".pic-block").append('<label class="pic-label icon"><img src="'+pic[i].avatar+'"/></label>');
                 //alert("src:"+pic[i].avatar);
@@ -100,7 +98,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","text!Tpl
             self = this;
             self.user= this.getCurrentUser()
         },
-        
+
         onShow: function () {
             self.getHouseInfo(function (data) {
                 self.putDistricts(data);
