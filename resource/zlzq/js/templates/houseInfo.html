@@ -52,7 +52,8 @@
                 <label>区域</label>
                 <div class="input-cotent" id="area" >
                     <!--???=realties.district_id-->
-                    <%=realties.district_id%>
+                    <!--<%=realties.district_id%>-->
+                    <%=area%>
                 </div>
             </li>
             <li class="form-select" id="housetype-select">
@@ -250,12 +251,14 @@
                         <label class="<%=device.villa ?'on':''%>">别墅</label>
                     </li>
                     <li>
-                        <label class="<%=device.standalone ?'on':''%>">唯一住房</label>
+                        <label class="<%=device.standalone ?'on':''%>">复式</label>
                     </li>
                 </ul>
             </dd>
         </dl>
     </form>
+
+    <div style="padding-top: 40px"></div>
 
     <div class="cd-popup" id="ask-del" role="alert">
         <div class="cd-popup-container">

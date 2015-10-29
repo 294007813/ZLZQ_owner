@@ -6,8 +6,14 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","text!Tpl
             "click .house-info": "toHousesInfo",
             "click .icon-person": "toPersonal",
             "click .icon-home": "toLocation",
-            "click .back": "toLocation"
+            "click .back": "toLocation",
+            "click .nothing": "toHouseUpload"
         },
+
+        toHouseUpload:function(){
+                Lizard.goTo("houses_upload.html");
+        },
+
         getHouseList: function (cb) {
             if (!self.user) {
                 cb && cb();

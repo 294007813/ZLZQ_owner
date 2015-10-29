@@ -602,7 +602,7 @@ dd.pic-input{
 
 /*--myhouses--*/
 .house-list{
-	padding:0 15px 20px 15px;
+	padding:0 10px 0 10px;
 
 }
 .house-list .house-info{
@@ -612,7 +612,8 @@ dd.pic-input{
 	display: block;
 }
 .house-list .house-info img{
-	width: 105px;
+	/*width: 105px;*/
+	width: 35%;
 	height: 78px;
 	border-radius: 4px;
 }
@@ -620,7 +621,7 @@ dd.pic-input{
 	float: right;
 	padding-left: 10px;
 	flex:1;
-	width: auto;
+	width: 60%;
 }
 .house-list .house-info .info-block .info-title{
 	font-size: 16px;

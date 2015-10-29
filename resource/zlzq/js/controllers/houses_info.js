@@ -53,8 +53,9 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","text!Tpl
                 url: url,
                 type: "get",
                 success: function (data) {
-                    self.hideLoading();
+                    //self.hideLoading();
                     cb(data);
+
 
                 },
                 error: function (e) {
@@ -66,25 +67,24 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","text!Tpl
             });
         },
 
-        getDistricts: function (callback) {
+        putDistricts: function (data1) {
             $.ajax({
                 url: Lizard.host + Lizard.apiUrl + 'districts',
-                dataType: "json",
-                contentType: "application/json",
                 type: "get",
                 success: function (data) {
-                    callback && callback(data.districts);
+
+                    for(i=0;i<data.length;i++){
+                        //alert("1:"+data[i].id);
+                        //alert("2:"+data1.realty.district_id);
+                        if(data[i].id==data1.realty.district_id){
+                            self.area=data[i].title;
+                            break;
+                        }
+                    }
                 }
             });
         },
 
-        showDistricts: function(dist){
-            for(i=0;i<dist.length;i++){
-                if(dist[i].id==$("#area").text()){
-                    alert(dist[i].title)
-                }
-            }
-        },
 
         gitPic: function(data){
             var pic=[];
@@ -100,23 +100,14 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","text!Tpl
             self = this;
             self.user= this.getCurrentUser()
         },
+        
         onShow: function () {
             self.getHouseInfo(function (data) {
-
-                self.$el.html(_.template(TplHouseInfo)({realties: data.realty}));
-
+                self.putDistricts(data);
+                self.$el.html(_.template(TplHouseInfo)({realties: data.realty,area:self.area}));
                 self.gitPic(data);
-                self.getDistricts(function(data){
-                    for(i=0;i<data.length;i++){
-                        if(data[i].id==$("#area").text()){
-                            //alert(data[i].title)
-                            $("#area").text(data[i].title);
-                        }
-                    }
-                });
-                self.hideLoading();
-
             })
+            self.hideLoading();
         },
 
 

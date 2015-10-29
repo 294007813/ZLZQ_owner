@@ -108,7 +108,7 @@ define(['BaseView', "cUIInputClear", "Model", "Store", "text!TplRegister"], func
                     this.showMyToast("请输入验证码", 1000);
                     return;
                 }
-                var invitecode= (this.$el.find(".inputinvicode").val());
+                var invitecode= (this.$el.find("#inputinvicode").val());
                 invitecode=invitecode?invitecode:'';
 
                 this.showLoading();
