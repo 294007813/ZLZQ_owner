@@ -108,7 +108,7 @@ define(['BaseView', "cUIInputClear", "Model", "Store", "text!TplRegister"], func
                     this.showMyToast("请输入验证码", 1000);
                     return;
                 }
-                var invitecode= (this.$el.find("#inputinvicode").val());
+                var invitecode= (this.$el.find("#inputInviteCode").val());
                 invitecode=invitecode?invitecode:'';
 
                 this.showLoading();
@@ -136,7 +136,7 @@ define(['BaseView', "cUIInputClear", "Model", "Store", "text!TplRegister"], func
                             data.user.applystate=data.user.state;
                             data.user.pbalabce=data.user.balance;
                             self.setLoginStatus({isLogin: true, user: data.user,token:data.user.authentication_token});
-                            self.showMyToast("注册成功！获得注册积分30000并额外获得奖励积分15000！", 1000);
+                            self.showMyToast("注册成功！获得注册积分30000并额外获得奖励积分15000！", 3000);
 
 
                             Lizard.goTo("login.html");
