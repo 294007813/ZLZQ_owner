@@ -43,6 +43,7 @@
 			'TplHouseUpload':baseUrl + 'templates/houseUpload.html',
 			'TplGetreward': baseUrl + 'templates/getinvitereward.html',
 			'TplSendinvite': baseUrl + 'templates/sendinvitecode.html',
+			'TplVisitlist': baseUrl + 'templates/visitlist.html',
 	    }
 	};
 	config.urlArgs = "v=1";

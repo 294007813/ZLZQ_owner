@@ -8,10 +8,16 @@ define(['BaseView', "cUIInputClear","cUIImageSlider","text!TplNewIndex", "Model"
             "click .icon-person":"toPersonal",
             "click .iconPad":"toMyhouse",
             "click .iconNews":"toNews",
+            "click .icon-note":"toVisit",
 
         },
 
-
+        toVisit:function(){
+            if(!this.isLogin()){
+                this.showMyToast("请先登录", 1500);
+            }else
+                Lizard.goTo("visitlist.html");
+        },
 
         toMyhouse:function(){
             if(!this.isLogin()){

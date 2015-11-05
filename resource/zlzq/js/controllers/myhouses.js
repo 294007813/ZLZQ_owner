@@ -7,7 +7,12 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","text!Tpl
             "click .icon-person": "toPersonal",
             "click .icon-home": "toLocation",
             "click .back": "toLocation",
-            "click .nothing": "toHouseUpload"
+            "click .nothing": "toHouseUpload",
+            "click .icon-note":"toVisit",
+        },
+
+        toVisit:function(){
+            Lizard.goTo("visitlist.html");
         },
 
         toHouseUpload:function(){

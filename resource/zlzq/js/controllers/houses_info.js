@@ -11,7 +11,13 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","text!Tpl
             "click .cd-popup":"toCancel",
             "click .cd-no":"toCancel",
             "click #yes-del":"delHouse",
+            "click .icon-note":"toVisit",
         },
+
+        toVisit:function(){
+            Lizard.goTo("visitlist.html");
+        },
+
         toChange:function(e) {
             self.showLoading();
             Lizard.goTo("houses_upload.html?id=" + self.hid);

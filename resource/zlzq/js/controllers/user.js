@@ -18,6 +18,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","UIGroupS
             "click .bottom-bar .order":"toOrderList",
             "click .opt-list .invite":"togetreward",
             "click .opt-list .to_apply":"toApply",
+            "click .icon-note":"toVisit",
             "click .opt-list .to_send":"toSend",
             "click .sign":"toSign",
             "click .ver":"askUpdte",
@@ -40,6 +41,10 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","UIGroupS
                 self.$el.find("#ask-update").addClass("is-visible");
             }else self.showMyToast("已是最新版", 1000);
 
+        },
+
+        toVisit:function(){
+                Lizard.goTo("visitlist.html");
         },
 
         toSend: function(e) {

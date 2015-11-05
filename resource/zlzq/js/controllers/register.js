@@ -2,30 +2,39 @@ define(['BaseView', "cUIInputClear", "Model", "Store", "text!TplRegister"], func
     var self;
     var time1=0;
     var View = BaseView.extend({
-            ViewName: 'register',
-            events: {
-                "click  .btn_link1": "toSignIn",
-                "click .submit": "toReg",
-                "click .btn_get_password": "toResetPsw",
-                "click .favourite":"toFavorite",
-                "click .mine" :"toUserCenter",
-                "click .rent":"toRent",
-                "click .login_btn":"toLogin",
-                "click .icon-home":"toRent",
-                "click .bottom-bar .mine":"toPersonal",
-                "click .bottom-bar .order":"toOrder",
-                //"click .bottom-bar .schedule":"toSchedule",
-                "click .login_box  #VerifyCode  .btn": "getCode"
-            },
-            showMyToast: function (msg, time) {
-                self.showToast({
-                    datamodel: {
-                        content: msg
-                    },
-                    maskToHide: false,
-                    hideSec: time
-                });
-            },
+        ViewName: 'register',
+        events: {
+            "click  .btn_link1": "toSignIn",
+            "click .submit": "toReg",
+            "click .btn_get_password": "toResetPsw",
+            "click .favourite":"toFavorite",
+            "click .mine" :"toUserCenter",
+            "click .rent":"toRent",
+            "click .login_btn":"toLogin",
+            "click .icon-home":"toRent",
+            "click .bottom-bar .mine":"toPersonal",
+            "click .bottom-bar .order":"toOrder",
+            //"click .bottom-bar .schedule":"toSchedule",
+            "click .login_box  #VerifyCode  .btn": "getCode",
+            "click .icon-note":"toVisit",
+        },
+        showMyToast: function (msg, time) {
+            self.showToast({
+                datamodel: {
+                    content: msg
+                },
+                maskToHide: false,
+                hideSec: time
+            });
+        },
+
+        toVisit:function(){
+            if(!this.isLogin()){
+                this.showMyToast("请先登录", 1500);
+            }else
+            Lizard.goTo("visitlist.html");
+        },
+
         getCode:function(e){
             var mobile = $.trim(this.$el.find(".username").val());
             if (!mobile) {

@@ -20,8 +20,14 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             "click .submitBtn": "submitHouseInfo",
             "click .cd-popup,.cd-no":"toCancel",
             "click .delete": "delpicNew",
+            "click .icon-note":"toVisit",
 
         },
+
+        toVisit:function(){
+            Lizard.goTo("visitlist.html");
+        },
+
         delpicNew:function(){
             if($(".delico").hasClass("delshow")){
                 $(".delico").removeClass("delshow");

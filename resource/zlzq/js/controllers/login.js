@@ -14,7 +14,8 @@ define(['BaseView', "cUIInputClear", "Model", "Store", "text!TplLogin"], functio
                 "click .bottom-bar .order":"toOrderList",
                 //"click .bottom-bar .schedule":"toSchedule",
                 "click #getPwd": "toGetPwd",
-                "click .get-pwd-box .g_btn_s":"getPwd"
+                "click .get-pwd-box .g_btn_s":"getPwd",
+                "click .icon-note":"toVisit",
             },
             showMyToast: function (msg, time) {
                 self.showToast({
@@ -24,6 +25,13 @@ define(['BaseView', "cUIInputClear", "Model", "Store", "text!TplLogin"], functio
                     maskToHide: false,
                     hideSec: time
                 });
+            },
+
+            toVisit:function(){
+                if(!this.isLogin()){
+                    this.showMyToast("请先登录", 1500);
+                }else
+                Lizard.goTo("visitlist.html");
             },
 
             getPwd:function(e) {
@@ -126,8 +134,8 @@ define(['BaseView', "cUIInputClear", "Model", "Store", "text!TplLogin"], functio
                             self.setLoginStatus({isLogin: true,user: data.user,token:data.token});
                             self.showMyToast("登入成功", 1000);
                             //Lizard.goTo("index.html");
-                            self.toRent();
-
+                            //self.toRent();
+                            Lizard.goTo("user.html");
                         }
 
                     },
