@@ -43,21 +43,6 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","UIGroupS
 
 
             })
-
-            //var self=this;
-            //var self=this;
-            //    file = e.currentTarget.files[0];
-            //if(!/image\/\w+/.test(file.type)){
-            //    alert("请确保文件为图像类型");
-            //    return false;
-            //}
-            //var reader = new FileReader();
-            //reader.readAsDataURL(file);
-            //reader.onload = function(e) {
-            //    //self.$el.find(".avatar")[0].src = this.result;
-            //    self.cancelEditing();
-            //}
-
         },
         uploadPicture:function(data){
             self.showLoading();
@@ -218,35 +203,6 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","UIGroupS
             });
         },
 
-
-        /* toUpdateGender:function() {
-         self.$el.find(".personal").addClass("gender-active");
-         self.setGenderHeader();
-
-         },*/
-        /*setGenderHeader:function() {
-         self.header.set({
-         title: '性别',
-         back: true,
-         backtext: '取消',
-         view: this,
-         btn: {
-         title: '保存',
-         id: 'confirm-btn',
-         classname: 'right_btn'
-         },
-         events: {
-         returnHandler: function () {
-         self.$el.find(".personal").removeClass("gender-active");
-         self.setHeader();
-         },
-         commitHandler: function () {
-
-         }
-         }
-         });
-
-         },*/
         toUpdateName: function () {
             self.$el.find(".personal").addClass("name-active");
             self.setNameHeader();
@@ -368,8 +324,8 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","UIGroupS
                         return
                     }
                     if(data){
-                        data.user.balance=data.balance;
-                        data.user.invited_code=data.invited_code;
+                        self.user.balance=data.balance;
+                        self.user.invite_code=data.invited_code;
 
 
                     }
@@ -424,7 +380,7 @@ define(['BaseView', "cUIInputClear","cUIImageSlider" ,"Model", "Store","UIGroupS
             }else{
                 self.hideLoading();
             }
-            self.$el.find("#picture").attr("src",user.avatar.avatar.url);
+            //self.$el.find("#picture").attr("src",user.avatar.avatar.url);
 
         },
         //设置标题
