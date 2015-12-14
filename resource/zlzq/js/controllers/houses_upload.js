@@ -1,4 +1,4 @@
-define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupSelect","text!TplHouseUpload"], function (BaseView, cUIInputClear,cUIImageSlider, Model, Store,UIGroupSelect,TplHouseUpload) {
+define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupSelect","text!TplHouseUpload","cImageZoom"], function (BaseView, cUIInputClear,cUIImageSlider, Model, Store,UIGroupSelect,TplHouseUpload,cImageZoom) {
     var self;
     var View = BaseView.extend({
         //url: "http://zlzq.easybird.cn",
@@ -67,6 +67,8 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             self.iframeContent.contentWindow.getPictureFromCamera(function (data) {
                 $(".pic-block").prepend('<label class="pic-label icon" ><label class="delico new" ></label> <img class="housepic" src="data:image/jpeg;base64,' + data + '"/> </label>');
                 self.hidePicType();
+                $(".housepic").fancyzoom();
+                $(".fullimg").fancyzoom();
             })
         },
         //点击选择相册
@@ -74,6 +76,8 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             self.iframeContent.contentWindow.getPictureFromPhoto(function (data) {
                 $(".pic-block").prepend('<label class="pic-label icon" ><label class="delico new" ></label> <img class="housepic" src="data:image/jpeg;base64,' + data + '"/> </label>');
                 self.hidePicType();
+                $(".housepic").fancyzoom();
+                $(".fullimg").fancyzoom();
             })
         },
         toCancel: function(){
@@ -668,9 +672,11 @@ define(['BaseView', "cUIInputClear","cUIImageSlider", "Model", "Store","UIGroupS
             pic=data.realty.media;
             //alert("length:"+pic.length);
             for(i=0;i<data.realty.media.length;i++){
-                $(".pic-block").append('<label class="pic-label icon"><label class="delico saved" ></label><img src="'+pic[i].avatar+'" picid="'+pic[i].medium_id+'"/></label>');
+                $(".pic-block").append('<label class="pic-label icon"><label class="delico saved" ></label><img class="fullimg" src="'+pic[i].avatar+'" picid="'+pic[i].medium_id+'"/></label>');
                 //alert("src:"+pic[i].avatar);
             }
+            $(".housepic").fancyzoom();
+            $(".fullimg").fancyzoom();
         },
 
         //房源图片上传
